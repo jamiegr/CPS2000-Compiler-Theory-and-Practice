@@ -22,6 +22,8 @@
 
 
 #include "Token.h"
+#include <iostream>
+#include <fstream>
 #include <functional>
 #include <unordered_map>
 
@@ -30,7 +32,7 @@ using namespace std;
 class Lexer {
 
 public:
-    Lexer(string fileAddress);//lexer constructor with address of file to read instructions from
+    Lexer(string file_address);//lexer constructor with address of file to read instructions from
 
     Token GetNextToken();//get next token function to return next token in program for parser as specified in assignment description
 
@@ -110,6 +112,9 @@ private:
     TOK_TYPE classifyIdentifier(string identifier);//takes a string classified as an identifier and checks if it matches any keywords such as for, if, print, return, var etc... and returns the corresponding token type
 
     int getNextState(int current_state, char next_char);//takes the current state and the next character in the current string being tokenized and returns the id of the resulting state
+
+    string program;//the string which will store the code to be compiled
+    int char_cursor, line_cursor, total_lines;//two integers to point to the current character and the current line the lexer is processing, and one integer to store the total number of lines in the program
 };
 
 
