@@ -34,7 +34,7 @@ class Lexer {
 public:
     Lexer(string file_address);//lexer constructor with address of file to read instructions from
 
-    Token GetNextToken();//get next token function to return next token in program for parser as specified in assignment description
+    Token getNextToken();//get next token function to return next token in program for parser as specified in assignment description
 
 private:
     function<bool(char)> transition_function[ALPHABET] = {//array of functions to classify which character of the alphabet the next character falls under
@@ -114,7 +114,7 @@ private:
 
     int getNextState(int current_state, char next_char);//takes the current state and the next character in the current string being tokenized and returns the id of the resulting state
 
-    string program;//the string which will store the code to be compiled
+    string program, current_token;//the string which will store the code to be compiled and the characters processed so far from the current token being evaluated
     int char_cursor, line_cursor, total_lines;//two integers to point to the current character and the current line the lexer is processing, and one integer to store the total number of lines in the program
 };
 
