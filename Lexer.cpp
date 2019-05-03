@@ -22,3 +22,10 @@ Lexer::Lexer(string file_address) {//lexer constructor, checks if given file add
     }
     filestream.close();
 }
+
+Token Lexer::GetNextToken() {
+    if(line_cursor > total_lines){
+        return Token(TOK_EOF, "");
+    }
+
+}

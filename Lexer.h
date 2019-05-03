@@ -17,7 +17,7 @@
 #endif
 
 #ifndef DFA_STATES
-#define DFA_STATES 24 //S0-S23, DFA to be attached in documentation
+#define DFA_STATES 25 //S0-S24, DFA to be attached in documentation
 #endif
 
 
@@ -66,10 +66,10 @@ private:
             {1, 1, 2, ERROR, 4, 5, 6, 6, 7, 8, 8, 10, 11, 12, 13, 14, 15, 16, 17}, //S0 - Initial State
             {1, 1, 1, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S1 - Final State - Identifier Token
             {ERROR, ERROR, 2, 3, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S2 - Final State - Integer Token
-            {ERROR, ERROR, 3, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S3 - Final State - Float Token
+            {ERROR, ERROR, 24, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S3 - Non-Final State - Partial Float Token
             {ERROR, ERROR, ERROR, ERROR, 18, 19, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S4 - Final State - Division Token
             TERMINAL_STATE, //S5 - Final State - Multiplication Token
-            TERMINAL_STATE, //S6 - Final State - AddiditiveOp Token
+            TERMINAL_STATE, //S6 - Final State - AdditiveOp Token
             {ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 9, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S7 - Final State - AssignmentOp Token
             {ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 9, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S8 - Final State - RelOp Token
             TERMINAL_STATE, //S9 - Final State - RelOp Token
@@ -85,13 +85,13 @@ private:
             {ERROR, ERROR, ERROR, ERROR, ERROR, 22, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 19, 19, 19}, //S19 - Non-Final State - BlockComment
             TERMINAL_STATE, //S21 - Final State, SingleLineComment Token
             {ERROR, ERROR, ERROR, ERROR, 23, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S22 - Non-Final State - BlockComment
-            TERMINAL_STATE //S23 - Final State, BlockComment Token
+            TERMINAL_STATE, //S23 - Final State, BlockComment Token
+            {ERROR, ERROR, 24, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR} //S24 - Final State, Float Token
     };
 
     unordered_map<int, TOK_TYPE> final_states = {//mapping each final state to its corresponding token type
             {1, TOK_IDENTIFIER},
             {2, TOK_INT_LIT},
-            {3, TOK_FLOAT_LIT},
             {4, TOK_DIV_OP},
             {5, TOK_MULT_OP},
             {6, TOK_ADD_OP},
@@ -106,7 +106,8 @@ private:
             {16, TOK_SEMICOLON},
             {17, TOK_COMMA},
             {21, TOK_LINE_COMMENT},
-            {23, TOK_BLOCK_COMMENT}
+            {23, TOK_BLOCK_COMMENT},
+            {24, TOK_FLOAT_LIT}
     };
 
     TOK_TYPE classifyIdentifier(string identifier);//takes a string classified as an identifier and checks if it matches any keywords such as for, if, print, return, var etc... and returns the corresponding token type
