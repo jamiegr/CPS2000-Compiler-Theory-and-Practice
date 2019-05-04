@@ -6,11 +6,12 @@
 
 Lexer::Lexer(string file_address) {//lexer constructor, checks if given file address is valid and loads the file
     program = "";
-    current_token = "";
+    current_lexeme = "";
     string currentLine;
     char_cursor = 0;//starts at 0 since this will be used to get character from the 'program' string by index
     line_cursor = 1;//starts at 1 since this will be used to keep track of the line currently being processed, to return EOF token when final line is passed
     total_lines = 0;//starts at 0 and will be incremented for every line read in the program
+    current_state = 0;
     ifstream filestream;
     filestream.open(file_address);
     if(filestream.is_open()){//only executes if valid readable file address is given
@@ -27,15 +28,24 @@ Lexer::Lexer(string file_address) {//lexer constructor, checks if given file add
 Token Lexer::getNextToken() {
     if(line_cursor > total_lines) return Token(TOK_EOF, "");//if last line is exceeded, return end of file token
 
-    if(current_token.empty()){
-        int currentState = 0;
-
+    if(current_lexeme.empty() && current_state == 0){
+        while(isspace(program.at(char_cursor))){//skipping over whitespace between tokens
+            if(program.at(char_cursor) == '\n') line_cursor++;
+            char_cursor++;
+        }
     }
+
+    while(current_state != ERROR){
+        current_lexeme.append(string(1, program.at(char_cursor)));//using string(1, c) constructor to convert current character to a string and append it to the current lexeme
+        current_state = getNextState();
+    }
+
+
 }
 
-int Lexer::getNextState(int current_state, char next_char) {
+int Lexer::getNextState() {
     for(int i = 0; i < ALPHABET; i++){
-        if(transition_function[i](next_char)){
+        if(transition_function[i](program.at(char_cursor))){
             return transition_table[current_state][i];
         }
     }

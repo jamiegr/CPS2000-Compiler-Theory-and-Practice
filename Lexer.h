@@ -84,7 +84,7 @@ private:
             {ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 21, 18, 18}, //S18 - Non-Final State - SingleLineComment
             {ERROR, ERROR, ERROR, ERROR, ERROR, 22, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 19, 19, 19}, //S19 - Non-Final State - BlockComment
             TERMINAL_STATE, //S21 - Final State, SingleLineComment Token
-            {ERROR, ERROR, ERROR, ERROR, 23, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR}, //S22 - Non-Final State - BlockComment
+            {ERROR, ERROR, ERROR, ERROR, 23, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, 19, 19, 19}, //S22 - Non-Final State - BlockComment
             TERMINAL_STATE, //S23 - Final State, BlockComment Token
             {ERROR, ERROR, 24, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR, ERROR} //S24 - Final State, Float Token
     };
@@ -112,10 +112,11 @@ private:
 
     TOK_TYPE classifyIdentifier(string identifier);//takes a string classified as an identifier and checks if it matches any keywords such as for, if, print, return, var etc... and returns the corresponding token type
 
-    int getNextState(int current_state, char next_char);//takes the current state and the next character in the current string being tokenized and returns the id of the resulting state
+    int getNextState();//uses the char_cursor and current_state to get the next state using the transition function and transition table
 
-    string program, current_token;//the string which will store the code to be compiled and the characters processed so far from the current token being evaluated
-    int char_cursor, line_cursor, total_lines;//two integers to point to the current character and the current line the lexer is processing, and one integer to store the total number of lines in the program
+    string program, current_lexeme;//the string which will store the code to be compiled and the characters processed so far from the current lexeme being evaluated
+    unsigned int char_cursor, line_cursor, total_lines;//two integers to point to the current character and the current line the lexer is processing, one integer to store the total number of lines in the program
+    int current_state;//one more integer to keep track of the current state, not insigned since it can be an ERROR state which corresponds to a value of -1
 };
 
 
