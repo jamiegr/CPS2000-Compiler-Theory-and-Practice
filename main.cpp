@@ -1,6 +1,20 @@
-#include <iostream>
+//
+// Created by Jamie on 5/5/2019.
+//
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+#include "Lexer.h"
+using namespace std;
+
+int main(){
+    Lexer *lex = new Lexer("testprog.txt");
+
+    Token tok = lex->getNextToken();
+    cout << "Type: " << tok.getType() << endl;
+    cout << "Value: " << tok.getValue() << endl;
+
+    while(tok.getType() != TOK_EOF){
+        tok = lex->getNextToken();
+        cout << "Type: " << tok.getType() << endl;
+        cout << "Value: " << tok.getValue() << endl;
+    }
 }

@@ -1,0 +1,3 @@
+print y ; //6.25
+print n ;
+print k ;
