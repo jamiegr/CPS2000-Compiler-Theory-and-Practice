@@ -7,8 +7,9 @@
 
 
 #include "Visitor.h"
+#include "ASTNode.h"
 
-class ASTStatement {
+class ASTStatement : public ASTNode {
 
 public:
 

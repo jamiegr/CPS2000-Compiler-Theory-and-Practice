@@ -4,8 +4,6 @@
 
 #include "ASTStatement.h"
 
-
-
 ASTStatement::ASTStatement() = default;
 
 ASTStatement::~ASTStatement() = default;
