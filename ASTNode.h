@@ -10,6 +10,8 @@
 
 class ASTNode {
 
+public:
+
     ASTNode();
 
     virtual ~ASTNode();
