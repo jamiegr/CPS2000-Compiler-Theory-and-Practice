@@ -5,5 +5,3 @@
 #include "ASTExpression.h"
 
 ASTExpression::ASTExpression() = default;
-
-ASTExpression::~ASTExpression() = default;

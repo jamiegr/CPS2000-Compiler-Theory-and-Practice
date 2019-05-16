@@ -16,8 +16,6 @@ public:
 
     virtual ~ASTExpression();
 
-    virtual void Accept(Visitor *visitor) = 0;
-
 };
 
 

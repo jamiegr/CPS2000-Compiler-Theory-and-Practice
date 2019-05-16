@@ -5,5 +5,3 @@
 #include "ASTNode.h"
 
 ASTNode::ASTNode() = default;
-
-ASTNode::~ASTNode() = default;

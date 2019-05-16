@@ -17,8 +17,6 @@ public:
 
     virtual ~ASTStatement();
 
-    virtual void Accept(Visitor *visitor) = 0;
-
 };
 
 
