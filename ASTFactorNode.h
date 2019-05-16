@@ -1,0 +1,14 @@
+//
+// Created by Jamie on 5/16/2019.
+//
+
+#ifndef COMPILERASSIGNMENT_ASTFACTORNODE_H
+#define COMPILERASSIGNMENT_ASTFACTORNODE_H
+
+
+class ASTFactorNode {
+
+};
+
+
+#endif //COMPILERASSIGNMENT_ASTFACTORNODE_H

@@ -1,0 +1,14 @@
+//
+// Created by Jamie on 5/16/2019.
+//
+
+#ifndef COMPILERASSIGNMENT_ASTTERMNODE_H
+#define COMPILERASSIGNMENT_ASTTERMNODE_H
+
+
+class ASTTermNode {
+
+};
+
+
+#endif //COMPILERASSIGNMENT_ASTTERMNODE_H

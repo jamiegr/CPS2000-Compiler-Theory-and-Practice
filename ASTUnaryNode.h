@@ -1,0 +1,14 @@
+//
+// Created by Jamie on 5/16/2019.
+//
+
+#ifndef COMPILERASSIGNMENT_ASTUNARYNODE_H
+#define COMPILERASSIGNMENT_ASTUNARYNODE_H
+
+
+class ASTUnaryNode {
+
+};
+
+
+#endif //COMPILERASSIGNMENT_ASTUNARYNODE_H
