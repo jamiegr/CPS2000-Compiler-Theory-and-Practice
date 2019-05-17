@@ -1,0 +1,14 @@
+//
+// Created by Jamie on 5/18/2019.
+//
+
+#ifndef COMPILERASSIGNMENT_ASTMULTOP_H
+#define COMPILERASSIGNMENT_ASTMULTOP_H
+
+
+class ASTMultOp {
+
+};
+
+
+#endif //COMPILERASSIGNMENT_ASTMULTOP_H

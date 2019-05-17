@@ -2,7 +2,7 @@
 // Created by Jamie on 5/5/2019.
 //
 
-#include "Lexer.h"
+#include "Lexer/Lexer.h"
 using namespace std;
 
 int main(){
