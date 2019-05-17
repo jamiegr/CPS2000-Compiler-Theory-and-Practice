@@ -5,9 +5,17 @@
 #ifndef COMPILERASSIGNMENT_ASTBLOCKSTATEMENT_H
 #define COMPILERASSIGNMENT_ASTBLOCKSTATEMENT_H
 
+#include <Vector>
+#include "ASTStatement.h"
 
-class ASTBlockStatement {
+using namespace std;
 
+class ASTBlockStatement : public ASTStatement {
+public:
+    vector<ASTStatement*> *block;//a vector to store all the statements in the block
+    explicit ASTBlockStatement(vector<ASTStatement*> *block);
+    ~ASTBlockStatement();
+    void Accept(Visitor *visitor) override;
 };
 
 

@@ -5,18 +5,11 @@
 #ifndef COMPILERASSIGNMENT_ASTSTATEMENT_H
 #define COMPILERASSIGNMENT_ASTSTATEMENT_H
 
-
-#include "Visitor.h"
 #include "ASTNode.h"
 
 class ASTStatement : public ASTNode {
-
 public:
-
-    ASTStatement();
-
-    virtual ~ASTStatement();
-
+    void Accept(Visitor *visitor) override = 0;
 };
 
 

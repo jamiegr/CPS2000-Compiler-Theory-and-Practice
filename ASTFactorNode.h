@@ -5,9 +5,11 @@
 #ifndef COMPILERASSIGNMENT_ASTFACTORNODE_H
 #define COMPILERASSIGNMENT_ASTFACTORNODE_H
 
+#include "ASTNode.h"
 
-class ASTFactorNode {
-
+class ASTFactorNode : public ASTNode {
+public:
+    void Accept(Visitor *visitor) override = 0;
 };
 
 

@@ -5,17 +5,11 @@
 #ifndef COMPILERASSIGNMENT_ASTEXPRESSION_H
 #define COMPILERASSIGNMENT_ASTEXPRESSION_H
 
-
 #include "ASTNode.h"
 
 class ASTExpression : public ASTNode {
-
 public:
-
-    ASTExpression();
-
-    virtual ~ASTExpression();
-
+    void Accept(Visitor *visitor) override = 0;
 };
 
 

@@ -3,3 +3,15 @@
 //
 
 #include "ASTBlockStatement.h"
+
+ASTBlockStatement::ASTBlockStatement(vector<ASTStatement*> *block){
+    this->block = block;
+}
+
+ASTBlockStatement::~ASTBlockStatement(){
+    block->clear();
+}
+
+void ASTBlockStatement::Accept(Visitor *visitor) {
+    visitor->visit(this);
+}

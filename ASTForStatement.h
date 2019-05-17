@@ -6,8 +6,14 @@
 #define COMPILERASSIGNMENT_ASTFORSTATEMENT_H
 
 
-class ASTForStatement {
+#include "ASTVariableDeclStatement.h"
+#include "ASTExpression.h"
 
+class ASTForStatement {
+public:
+    ASTVariableDeclStatement *variableDeclStatement;
+    ASTExpression *expression;
+    ASTAssignmentStatement *assignmentStatement;
 };
 
 
