@@ -12,9 +12,11 @@ using namespace std;
 
 class ASTBlockStatement : public ASTStatementNode {
 public:
-    vector<ASTStatementNode*> *block;//a vector to store all the statements in the block
-    explicit ASTBlockStatement(vector<ASTStatementNode*> *block);
+    vector<ASTStatementNode *> *block;//a vector to store all the statements in the block
+    explicit ASTBlockStatement(vector<ASTStatementNode *> *block);
+
     ~ASTBlockStatement();
+
     void Accept(Visitor *visitor) override;
 };
 

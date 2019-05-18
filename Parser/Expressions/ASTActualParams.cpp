@@ -4,11 +4,11 @@
 
 #include "ASTActualParams.h"
 
-ASTActualParams::ASTActualParams(vector<ASTExpressionNode*> *parameters){
+ASTActualParams::ASTActualParams(vector<ASTExpressionNode *> *parameters) {
     this->parameters = parameters;
 }
 
-ASTActualParams::~ASTActualParams (){
+ASTActualParams::~ASTActualParams() {
     parameters->clear();
 }
 

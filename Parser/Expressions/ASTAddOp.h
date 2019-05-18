@@ -7,12 +7,16 @@
 
 #include "../ASTExpressionNode.h"
 
-enum ADD_OP{PLUS = 1, MINUS = 2, OR = 3};
+enum ADD_OP {
+    PLUS = 1, MINUS = 2, OR = 3
+};
 
-class ASTAddOp : public ASTExpressionNode{
+class ASTAddOp : public ASTExpressionNode {
 public:
     ADD_OP value;
+
     ASTAddOp(ADD_OP value);
+
     void Accept(Visitor *visitor) override;
 };
 

@@ -13,8 +13,12 @@ public:
     ASTVariableDeclStatement *variableDeclStatement;
     ASTExpressionNode *expression;
     ASTAssignmentStatement *assignmentStatement;
-    ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpressionNode *expression, ASTAssignmentStatement *assignmentStatement);
+
+    ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpressionNode *expression,
+                    ASTAssignmentStatement *assignmentStatement);
+
     ~ASTForStatement();
+
     void Accept(Visitor *visitor) override;
 };
 

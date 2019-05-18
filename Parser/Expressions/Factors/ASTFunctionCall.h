@@ -12,8 +12,11 @@ class ASTFunctionCall : public ASTFactorNode {
 public:
     ASTIdentifierNode *identifierNode;
     ASTActualParams *actualParams;
+
     ASTFunctionCall(ASTIdentifierNode *identifierNode, ASTActualParams *actualParams);
+
     ~ASTFunctionCall();
+
     void Accept(Visitor *visitor) override;
 };
 

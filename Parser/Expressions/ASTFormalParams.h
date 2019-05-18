@@ -10,9 +10,12 @@
 
 class ASTFormalParams : ASTExpressionNode {
 public:
-    vector<ASTFormalParam*> *formalParams;
-    ASTFormalParams(vector<ASTFormalParam*> *formalParams);
+    vector<ASTFormalParam *> *formalParams;
+
+    ASTFormalParams(vector<ASTFormalParam *> *formalParams);
+
     ~ASTFormalParams();
+
     void Accept(Visitor *visitor) override;
 };
 

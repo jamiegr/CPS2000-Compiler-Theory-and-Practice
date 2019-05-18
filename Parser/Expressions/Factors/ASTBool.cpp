@@ -4,7 +4,7 @@
 
 #include "ASTBool.h"
 
-ASTBool::ASTBool(bool boolValue){
+ASTBool::ASTBool(bool boolValue) {
     this->boolValue = boolValue;
 }
 

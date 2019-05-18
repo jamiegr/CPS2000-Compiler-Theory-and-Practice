@@ -4,7 +4,8 @@
 
 #include "ASTIfStatement.h"
 
-ASTIfStatement::ASTIfStatement(ASTExpressionNode *expression, ASTBlockStatement *ifBlock, ASTBlockStatement *elseBlock) {
+ASTIfStatement::ASTIfStatement(ASTExpressionNode *expression, ASTBlockStatement *ifBlock,
+                               ASTBlockStatement *elseBlock) {
     this->expression = expression;
     this->ifBlock = ifBlock;
     this->elseBlock = elseBlock;

@@ -17,6 +17,6 @@ ASTSimpleExpression::~ASTSimpleExpression() {
 }
 
 
-void ASTSimpleExpression::Accept(Visitor *visitor){
+void ASTSimpleExpression::Accept(Visitor *visitor) {
     visitor->visit(this);
 }

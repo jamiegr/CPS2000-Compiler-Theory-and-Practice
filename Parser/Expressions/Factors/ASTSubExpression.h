@@ -9,12 +9,15 @@
 #include "../ASTExpression.h"
 #include "../ASTFactorNode.h"
 
-class ASTSubExpression : ASTFactorNode{
+class ASTSubExpression : ASTFactorNode {
 public:
     ASTExpression *expression;
+
     ASTSubExpression(ASTExpression *expression);
+
     ~ASTSubExpression();
-    void Accept(Visitor *visitor) override ;
+
+    void Accept(Visitor *visitor) override;
 };
 
 

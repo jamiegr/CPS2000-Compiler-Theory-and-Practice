@@ -6,8 +6,20 @@
 #define COMPILERASSIGNMENT_ASTVARIABLEDECLSTATEMENT_H
 
 
-class ASTVariableDeclStatement {
+#include "../Expressions/ASTType.h"
+#include "../Expressions/ASTExpression.h"
 
+class ASTVariableDeclStatement : public ASTStatementNode {
+public:
+    ASTIdentifierNode *identifierNode;
+    ASTType *type;
+    ASTExpression *expression;
+
+    ASTVariableDeclStatement(ASTIdentifierNode *identifierNode, ASTType *type, ASTExpression *expression);
+
+    ~ASTVariableDeclStatement();
+
+    void Accept(Visitor *visitor) override;
 };
 
 

@@ -7,12 +7,16 @@
 
 #include "../ASTExpressionNode.h"
 
-enum MULT_OP{MULTIPLICATION = 1, DIVISION = 2, AND = 3};
+enum MULT_OP {
+    MULTIPLICATION = 1, DIVISION = 2, AND = 3
+};
 
-class ASTMultOp : public ASTExpressionNode{
+class ASTMultOp : public ASTExpressionNode {
 public:
     MULT_OP value;
+
     ASTMultOp(MULT_OP value);
+
     void Accept(Visitor *visitor) override;
 };
 

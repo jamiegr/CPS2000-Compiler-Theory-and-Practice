@@ -8,14 +8,18 @@
 
 #include "../ASTStatementNode.h"
 
-class ASTFunctionDeclStatement : public ASTStatementNode{
+class ASTFunctionDeclStatement : public ASTStatementNode {
 public:
     ASTIdentifierNode *identifierNode;
     ASTFormalParams *formalParams;
     ASTType *type;
     ASTBlockStatement *blockStatement;
-    ASTFunctionDeclStatement(ASTIdentifierNode *identifierNode, ASTFormalParams *formalParams, ASTType *type, ASTBlockStatement *blockStatement);
+
+    ASTFunctionDeclStatement(ASTIdentifierNode *identifierNode, ASTFormalParams *formalParams, ASTType *type,
+                             ASTBlockStatement *blockStatement);
+
     ~ASTFunctionDeclStatement();
+
     void Accept(Visitor *visitor) override;
 };
 

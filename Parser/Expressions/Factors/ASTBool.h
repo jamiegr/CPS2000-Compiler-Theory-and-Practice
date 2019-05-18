@@ -8,10 +8,12 @@
 
 #include "../ASTFactorNode.h"
 
-class ASTBool : public ASTFactorNode{
+class ASTBool : public ASTFactorNode {
 public:
     bool boolValue;
+
     explicit ASTBool(bool boolValue);
+
     void Accept(Visitor *visitor) override;
 };
 
