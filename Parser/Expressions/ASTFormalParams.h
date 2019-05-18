@@ -2,8 +2,7 @@
 // Created by Jamie on 5/17/2019.
 //
 
-#ifndef COMPILERASSIGNMENT_ASTFORMALPARAMS_H
-#define COMPILERASSIGNMENT_ASTFORMALPARAMS_H
+#pragma once
 
 #include <vector>
 #include "../ASTExpressionNode.h"
@@ -19,5 +18,3 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
-
-#endif //COMPILERASSIGNMENT_ASTFORMALPARAMS_H

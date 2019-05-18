@@ -2,8 +2,7 @@
 // Created by Jamie on 5/18/2019.
 //
 
-#ifndef COMPILERASSIGNMENT_ASTUNARYOP_H
-#define COMPILERASSIGNMENT_ASTUNARYOP_H
+#pragma once
 
 #include "../ASTExpressionNode.h"
 
@@ -19,6 +18,3 @@ public:
 
     void Accept(Visitor *visitor) override;
 };
-
-
-#endif //COMPILERASSIGNMENT_ASTUNARYOP_H

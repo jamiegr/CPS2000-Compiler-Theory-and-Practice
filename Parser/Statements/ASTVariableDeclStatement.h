@@ -2,9 +2,7 @@
 // Created by Jamie on 5/16/2019.
 //
 
-#ifndef COMPILERASSIGNMENT_ASTVARIABLEDECLSTATEMENT_H
-#define COMPILERASSIGNMENT_ASTVARIABLEDECLSTATEMENT_H
-
+#pragma once
 
 #include "../Expressions/ASTType.h"
 #include "../Expressions/ASTExpression.h"
@@ -21,6 +19,3 @@ public:
 
     void Accept(Visitor *visitor) override;
 };
-
-
-#endif //COMPILERASSIGNMENT_ASTVARIABLEDECLSTATEMENT_H

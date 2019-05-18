@@ -4,7 +4,7 @@
 
 #include "Token.h"
 
-Token::Token(TOK_TYPE tokentype, string tokenvalue){
+Token::Token(TOK_TYPE tokentype, string tokenvalue) {
     this->type = tokentype;
     this->value = tokenvalue;
 }//default constructor

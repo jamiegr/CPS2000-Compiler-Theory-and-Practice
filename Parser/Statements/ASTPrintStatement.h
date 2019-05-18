@@ -2,9 +2,7 @@
 // Created by Jamie on 5/16/2019.
 //
 
-#ifndef COMPILERASSIGNMENT_ASTPRINTSTATEMENT_H
-#define COMPILERASSIGNMENT_ASTPRINTSTATEMENT_H
-
+#pragma once
 
 #include "../ASTStatementNode.h"
 
@@ -18,6 +16,3 @@ public:
 
     void Accept(Visitor *visitor) override;
 };
-
-
-#endif //COMPILERASSIGNMENT_ASTPRINTSTATEMENT_H

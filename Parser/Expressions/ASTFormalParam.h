@@ -2,9 +2,7 @@
 // Created by Jamie on 5/17/2019.
 //
 
-#ifndef COMPILERASSIGNMENT_ASTFORMALPARAMNODE_H
-#define COMPILERASSIGNMENT_ASTFORMALPARAMNODE_H
-
+#pragma once
 
 #include "../ASTExpressionNode.h"
 #include "ASTType.h"
@@ -21,5 +19,3 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
-
-#endif //COMPILERASSIGNMENT_ASTFORMALPARAMNODE_H

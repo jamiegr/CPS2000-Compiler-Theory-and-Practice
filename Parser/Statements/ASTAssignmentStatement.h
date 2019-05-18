@@ -2,8 +2,7 @@
 // Created by Jamie on 5/16/2019.
 //
 
-#ifndef COMPILERASSIGNMENT_ASTASSIGNMENTSTATEMENT_H
-#define COMPILERASSIGNMENT_ASTASSIGNMENTSTATEMENT_H
+#pragma once
 
 #include <string>
 #include "../ASTStatementNode.h"
@@ -20,6 +19,3 @@ public:
 
     void Accept(Visitor *visitor) override;
 };
-
-
-#endif //COMPILERASSIGNMENT_ASTASSIGNMENTSTATEMENT_H

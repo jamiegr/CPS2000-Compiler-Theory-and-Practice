@@ -2,9 +2,7 @@
 // Created by Jamie on 5/17/2019.
 //
 
-#ifndef COMPILERASSIGNMENT_ASTBOOLNODE_H
-#define COMPILERASSIGNMENT_ASTBOOLNODE_H
-
+#pragma once
 
 #include "../ASTFactorNode.h"
 
@@ -16,6 +14,3 @@ public:
 
     void Accept(Visitor *visitor) override;
 };
-
-
-#endif //COMPILERASSIGNMENT_ASTBOOLNODE_H

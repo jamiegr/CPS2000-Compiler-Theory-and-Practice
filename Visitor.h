@@ -2,8 +2,7 @@
 // Created by Jamie on 5/12/2019.
 //
 
-#ifndef COMPILERASSIGNMENT_VISITOR_H
-#define COMPILERASSIGNMENT_VISITOR_H
+#pragma once
 
 #include "Parser/Statements/ASTAssignmentStatement.h"
 #include "Parser/Expressions/Factors/ASTBool.h"
@@ -79,6 +78,3 @@ public:
 
     virtual void visit(ASTVariableDeclStatement *variableDeclStatement) = 0;
 };
-
-
-#endif //COMPILERASSIGNMENT_VISITOR_H
