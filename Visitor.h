@@ -5,28 +5,33 @@
 #ifndef COMPILERASSIGNMENT_VISITOR_H
 #define COMPILERASSIGNMENT_VISITOR_H
 
-#include "Parser/ASTAssignmentStatement.h"
-#include "Parser/ASTBool.h"
-#include "Parser/ASTFloat.h"
-#include "Parser/ASTForStatement.h"
-#include "Parser/ASTFunctionCall.h"
-#include "Parser/ASTFunctionDeclStatement.h"
-#include "Parser/ASTIfStatement.h"
-#include "Parser/ASTIntNode.h"
-#include "Parser/ASTPrintStatement.h"
-#include "Parser/ASTReturnStatement.h"
-#include "Parser/ASTSimpleExpression.h"
-#include "Parser/ASTSubExpression.h"
-#include "Parser/ASTUnaryNode.h"
-#include "Parser/ASTVariableDeclStatement.h"
-#include "Parser/ASTBlockStatement.h"
-#include "Parser/ASTActualParams.h"
-#include "Parser/ASTFormalParam.h"
-#include "Parser/ASTFormalParams.h"
+#include "Parser/Statements/ASTAssignmentStatement.h"
+#include "Parser/Expressions/Factors/ASTBool.h"
+#include "Parser/Expressions/Factors/ASTFloat.h"
+#include "Parser/Statements/ASTForStatement.h"
+#include "Parser/Expressions/Factors/ASTFunctionCall.h"
+#include "Parser/Statements/ASTFunctionDeclStatement.h"
+#include "Parser/Statements/ASTIfStatement.h"
+#include "Parser/Expressions/Factors/ASTIntNode.h"
+#include "Parser/Statements/ASTPrintStatement.h"
+#include "Parser/Statements/ASTReturnStatement.h"
+#include "Parser/Expressions/ASTSimpleExpression.h"
+#include "Parser/Expressions/Factors/ASTSubExpression.h"
+#include "Parser/Expressions/Factors/ASTUnaryNode.h"
+#include "Parser/Statements/ASTVariableDeclStatement.h"
+#include "Parser/Statements/ASTBlockStatement.h"
+#include "Parser/Expressions/ASTActualParams.h"
+#include "Parser/Expressions/ASTFormalParam.h"
+#include "Parser/Expressions/ASTFormalParams.h"
+#include "Parser/Expressions/ASTAddOp.h"
+#include "Parser/Expressions/ASTMultOp.h"
+#include "Parser/Expressions/ASTRelOp.h"
+#include "Parser/Expressions/ASTUnaryOp.h"
 
 class Visitor {
 public:
     virtual void visit(ASTActualParams *actualParams) = 0;
+    virtual void visit(ASTAddOp *addOp) = 0;
     virtual void visit(ASTAssignmentStatement *assignmentStatement) = 0;
     virtual void visit(ASTBlockStatement *blockStatement) = 0;
     virtual void visit(ASTBool *boolNode) = 0;
@@ -39,11 +44,16 @@ public:
     virtual void visit(ASTIdentifierNode *identifierNode) = 0;
     virtual void visit(ASTIfStatement *ifStatement) = 0;
     virtual void visit(ASTIntNode *intNode) = 0;
+    virtual void visit(ASTMultOp *multOp) = 0;
     virtual void visit(ASTPrintStatement *printStatement) = 0;
+    virtual void visit(ASTRelOp *relOp) = 0;
     virtual void visit(ASTReturnStatement *returnStatement) = 0;
     virtual void visit(ASTSimpleExpression *simpleExpression) = 0;
+    virtual void visit(ASTTerm *term) = 0;
+    virtual void visit(ASTType *type) = 0;
     virtual void visit(ASTSubExpression *subExpressionNode) = 0;
     virtual void visit(ASTUnaryNode *unaryNode) = 0;
+    virtual void visit(ASTUnaryOp *unaryOp) = 0;
     virtual void visit(ASTVariableDeclStatement *variableDeclStatement) = 0;
 };
 
