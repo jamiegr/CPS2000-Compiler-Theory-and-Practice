@@ -5,11 +5,11 @@
 #include "ASTBlockStatement.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTBlockStatement::ASTBlockStatement(std::vector<ASTStatementNode*> *block){
+ASTBlockStatement::ASTBlockStatement(std::vector<ASTStatementNode *> *block) {
     this->block = block;
 }
 
-ASTBlockStatement::~ASTBlockStatement(){
+ASTBlockStatement::~ASTBlockStatement() {
     block->clear();
 }
 

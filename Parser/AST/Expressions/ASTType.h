@@ -8,12 +8,16 @@
 
 #include "../ASTNode.h"
 
-enum TYPE{FLOAT = 1, INT = 2, BOOL = 3};
+enum TYPE {
+    FLOAT = 1, INT = 2, BOOL = 3
+};
 
-class ASTType : public ASTNode{
+class ASTType : public ASTNode {
 public:
     TYPE value;
+
     ASTType(TYPE value);
+
     void Accept(Visitor *visitor) override;
 };
 

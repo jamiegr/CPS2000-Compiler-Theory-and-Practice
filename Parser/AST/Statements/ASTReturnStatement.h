@@ -9,11 +9,14 @@
 #include "../ASTStatementNode.h"
 #include "../Expressions/ASTExpression.h"
 
-class ASTReturnStatement : public ASTStatementNode{
+class ASTReturnStatement : public ASTStatementNode {
 public:
     ASTExpression *expression;
+
     ASTReturnStatement(ASTExpression *expression);
+
     ~ASTReturnStatement();
+
     void Accept(Visitor *visitor) override;
 };
 

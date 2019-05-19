@@ -11,9 +11,12 @@
 
 class ASTActualParams : public ASTNode {
 public:
-    std::vector<ASTExpression*> *parameters;
-    explicit ASTActualParams(std::vector<ASTExpression*> *parameters);
+    std::vector<ASTExpression *> *parameters;
+
+    explicit ASTActualParams(std::vector<ASTExpression *> *parameters);
+
     ~ASTActualParams();
+
     void Accept(Visitor *visitor) override;
 };
 

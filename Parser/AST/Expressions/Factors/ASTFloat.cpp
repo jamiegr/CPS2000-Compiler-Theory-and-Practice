@@ -5,10 +5,10 @@
 #include "ASTFloat.h"
 #include "../../../../Visitor/Visitor.h"
 
-ASTFloat::ASTFloat(float floatValue){
+ASTFloat::ASTFloat(float floatValue) {
     this->floatValue = floatValue;
 }
 
-void ASTFloat::Accept(Visitor *visitor){
+void ASTFloat::Accept(Visitor *visitor) {
     visitor->visit(this);
 }

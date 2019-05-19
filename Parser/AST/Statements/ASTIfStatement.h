@@ -10,13 +10,16 @@
 #include "../Expressions/ASTExpression.h"
 #include "ASTBlockStatement.h"
 
-class ASTIfStatement : public ASTStatementNode{
+class ASTIfStatement : public ASTStatementNode {
 public:
     ASTExpression *expression;
     ASTBlockStatement *ifBlock;
     ASTBlockStatement *elseBlock;
+
     ASTIfStatement(ASTExpression *expression, ASTBlockStatement *ifBlock, ASTBlockStatement *elseBlock);
+
     ~ASTIfStatement();
+
     void Accept(Visitor *visitor) override;
 };
 

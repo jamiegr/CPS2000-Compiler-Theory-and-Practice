@@ -11,9 +11,12 @@
 
 class ASTFormalParams : public ASTNode {
 public:
-    std::vector<ASTFormalParam*> *formalParams;
-    explicit ASTFormalParams(std::vector<ASTFormalParam*> *formalParams);
+    std::vector<ASTFormalParam *> *formalParams;
+
+    explicit ASTFormalParams(std::vector<ASTFormalParam *> *formalParams);
+
     ~ASTFormalParams();
+
     void Accept(Visitor *visitor) override;
 };
 

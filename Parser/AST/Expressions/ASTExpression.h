@@ -14,8 +14,11 @@ public:
     ASTSimpleExpression *simpleExpression1;
     ASTRelOp *relOp;
     ASTSimpleExpression *simpleExpression2;
+
     ASTExpression(ASTSimpleExpression *simpleExpression1, ASTRelOp *relOp, ASTSimpleExpression *simpleExpression2);
+
     ~ASTExpression();
+
     void Accept(Visitor *visitor) override;
 };
 

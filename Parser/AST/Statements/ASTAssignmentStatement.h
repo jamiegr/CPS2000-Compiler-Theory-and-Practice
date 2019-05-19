@@ -15,7 +15,9 @@ public:
     ASTIdentifierNode *identifierNode;//the identifier which is being assigned a value
     ASTExpression *expression;//the expression whose result is to be assigned to the identifier
     ASTAssignmentStatement(ASTIdentifierNode *identifierNode, ASTExpression *expressionNode);
+
     ~ASTAssignmentStatement();
+
     void Accept(Visitor *visitor) override;
 };
 

@@ -5,7 +5,7 @@
 #include "ASTBool.h"
 #include "../../../../Visitor/Visitor.h"
 
-ASTBool::ASTBool(bool boolValue){
+ASTBool::ASTBool(bool boolValue) {
     this->boolValue = boolValue;
 }
 

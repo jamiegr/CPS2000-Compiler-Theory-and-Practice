@@ -8,10 +8,12 @@
 
 #include "../ASTFactorNode.h"
 
-class ASTInt : public ASTFactorNode{
+class ASTInt : public ASTFactorNode {
 public:
     int value;
+
     explicit ASTInt(int value);
+
     void Accept(Visitor *visitor) override;
 };
 

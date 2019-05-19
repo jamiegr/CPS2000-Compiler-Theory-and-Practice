@@ -11,7 +11,9 @@
 class ASTIdentifierNode : public ASTFactorNode {
 public:
     std::string value;
+
     explicit ASTIdentifierNode(std::string value);
+
     void Accept(Visitor *visitor) override;
 };
 

@@ -27,30 +27,55 @@
 class Visitor {
 public:
     virtual void visit(ASTBool *node) = 0;
+
     virtual void visit(ASTFloat *node) = 0;
+
     virtual void visit(ASTIdentifierNode *node) = 0;
+
     virtual void visit(ASTFunctionCall *node) = 0;
+
     virtual void visit(ASTInt *node) = 0;
+
     virtual void visit(ASTSubExpression *node) = 0;
+
     virtual void visit(ASTUnaryNode *node) = 0;
+
     virtual void visit(ASTActualParams *node) = 0;
+
     virtual void visit(ASTAddOp *node) = 0;
+
     virtual void visit(ASTExpression *node) = 0;
+
     virtual void visit(ASTFormalParam *node) = 0;
+
     virtual void visit(ASTFormalParams *node) = 0;
+
     virtual void visit(ASTMultOp *node) = 0;
+
     virtual void visit(ASTRelOp *node) = 0;
+
     virtual void visit(ASTSimpleExpression *node) = 0;
+
     virtual void visit(ASTTerm *node) = 0;
+
     virtual void visit(ASTType *node) = 0;
+
     virtual void visit(ASTUnaryOp *node) = 0;
+
     virtual void visit(ASTAssignmentStatement *node) = 0;
+
     virtual void visit(ASTBlockStatement *node) = 0;
+
     virtual void visit(ASTForStatement *node) = 0;
+
     virtual void visit(ASTFunctionDeclStatement *node) = 0;
+
     virtual void visit(ASTIfStatement *node) = 0;
+
     virtual void visit(ASTPrintStatement *node) = 0;
+
     virtual void visit(ASTReturnStatement *node) = 0;
+
     virtual void visit(ASTVariableDeclStatement *node) = 0;
 };
 

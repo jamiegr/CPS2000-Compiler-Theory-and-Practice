@@ -5,11 +5,11 @@
 #include "ASTActualParams.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTActualParams::ASTActualParams(std::vector<ASTExpression*> *parameters){
+ASTActualParams::ASTActualParams(std::vector<ASTExpression *> *parameters) {
     this->parameters = parameters;
 }
 
-ASTActualParams::~ASTActualParams (){
+ASTActualParams::~ASTActualParams() {
     parameters->clear();
 }
 

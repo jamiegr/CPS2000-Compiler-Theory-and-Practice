@@ -10,9 +10,11 @@
 
 class ASTBlockStatement : public ASTStatementNode {
 public:
-    std::vector<ASTStatementNode*> *block;//a vector to store all the statements in the block
-    explicit ASTBlockStatement(std::vector<ASTStatementNode*> *block);
+    std::vector<ASTStatementNode *> *block;//a vector to store all the statements in the block
+    explicit ASTBlockStatement(std::vector<ASTStatementNode *> *block);
+
     ~ASTBlockStatement();
+
     void Accept(Visitor *visitor) override;
 };
 

@@ -7,7 +7,7 @@
 
 class Visitor;
 
-class ASTNode{
+class ASTNode {
 public:
     virtual void Accept(Visitor *visitor) = 0;
 };

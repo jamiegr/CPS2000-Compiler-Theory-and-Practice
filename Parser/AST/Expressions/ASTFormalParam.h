@@ -10,12 +10,15 @@
 #include "ASTType.h"
 #include "Factors/ASTIdentifierNode.h"
 
-class ASTFormalParam : public ASTNode{
+class ASTFormalParam : public ASTNode {
 public:
     ASTIdentifierNode *identifierNode;
     ASTType *type;
+
     ASTFormalParam(ASTIdentifierNode *identifierNode, ASTType *type);
+
     ~ASTFormalParam();
+
     void Accept(Visitor *visitor) override;
 };
 
