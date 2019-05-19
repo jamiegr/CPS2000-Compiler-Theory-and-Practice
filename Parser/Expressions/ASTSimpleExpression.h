@@ -2,7 +2,9 @@
 // Created by Jamie on 5/16/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTSIMPLEEXPRESSION_H
+#define COMPILERASSIGNMENT_ASTSIMPLEEXPRESSION_H
+
 
 #include "ASTTerm.h"
 #include "ASTAddOp.h"
@@ -17,3 +19,5 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
+
+#endif //COMPILERASSIGNMENT_ASTSIMPLEEXPRESSION_H

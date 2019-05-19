@@ -2,7 +2,8 @@
 // Created by Jamie on 5/16/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTIDENTIFIERNODE_H
+#define COMPILERASSIGNMENT_ASTIDENTIFIERNODE_H
 
 #include "../ASTFactorNode.h"
 #include <string>
@@ -14,3 +15,5 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
+
+#endif //COMPILERASSIGNMENT_ASTIDENTIFIERNODE_H

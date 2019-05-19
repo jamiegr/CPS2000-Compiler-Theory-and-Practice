@@ -2,7 +2,9 @@
 // Created by Jamie on 5/16/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTUNARYNODE_H
+#define COMPILERASSIGNMENT_ASTUNARYNODE_H
+
 
 #include "../ASTExpression.h"
 #include "../ASTFactorNode.h"
@@ -16,3 +18,5 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
+
+#endif //COMPILERASSIGNMENT_ASTUNARYNODE_H

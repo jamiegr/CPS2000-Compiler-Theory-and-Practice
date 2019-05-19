@@ -2,7 +2,8 @@
 // Created by Jamie on 5/17/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTACTUALPARAMS_H
+#define COMPILERASSIGNMENT_ASTACTUALPARAMS_H
 
 #include <vector>
 #include "../ASTExpressionNode.h"
@@ -15,3 +16,5 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
+
+#endif //COMPILERASSIGNMENT_ASTACTUALPARAMS_H

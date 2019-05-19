@@ -2,7 +2,9 @@
 // Created by Jamie on 5/17/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTTYPE_H
+#define COMPILERASSIGNMENT_ASTTYPE_H
+
 
 #include "../ASTExpressionNode.h"
 
@@ -15,3 +17,5 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
+
+#endif //COMPILERASSIGNMENT_ASTTYPE_H

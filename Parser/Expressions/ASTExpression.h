@@ -2,7 +2,8 @@
 // Created by Jamie on 5/18/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTEXPRESSION_H
+#define COMPILERASSIGNMENT_ASTEXPRESSION_H
 
 
 #include "ASTRelOp.h"
@@ -18,3 +19,5 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
+
+#endif //COMPILERASSIGNMENT_ASTEXPRESSION_H

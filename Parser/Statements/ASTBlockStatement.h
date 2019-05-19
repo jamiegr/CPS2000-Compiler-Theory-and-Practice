@@ -1,7 +1,9 @@
 //
 // Created by Jamie on 5/16/2019.
 //
-#pragma once
+
+#ifndef COMPILERASSIGNMENT_ASTBLOCKSTATEMENT_H
+#define COMPILERASSIGNMENT_ASTBLOCKSTATEMENT_H
 
 #include <Vector>
 #include "../ASTStatementNode.h"
@@ -15,3 +17,6 @@ public:
     ~ASTBlockStatement();
     void Accept(Visitor *visitor) override;
 };
+
+
+#endif //COMPILERASSIGNMENT_ASTBLOCKSTATEMENT_H

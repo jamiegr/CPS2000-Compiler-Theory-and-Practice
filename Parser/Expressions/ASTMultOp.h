@@ -2,7 +2,8 @@
 // Created by Jamie on 5/18/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTMULTOP_H
+#define COMPILERASSIGNMENT_ASTMULTOP_H
 
 #include "../ASTExpressionNode.h"
 
@@ -15,3 +16,5 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
+
+#endif //COMPILERASSIGNMENT_ASTMULTOP_H

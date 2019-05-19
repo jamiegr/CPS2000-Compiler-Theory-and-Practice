@@ -2,7 +2,9 @@
 // Created by Jamie on 5/16/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTRETURNSTATEMENT_H
+#define COMPILERASSIGNMENT_ASTRETURNSTATEMENT_H
+
 
 #include "../ASTStatementNode.h"
 
@@ -13,3 +15,6 @@ public:
     ~ASTReturnStatement();
     void Accept(Visitor *visitor) override;
 };
+
+
+#endif //COMPILERASSIGNMENT_ASTRETURNSTATEMENT_H

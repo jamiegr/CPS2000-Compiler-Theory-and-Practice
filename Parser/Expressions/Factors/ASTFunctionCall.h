@@ -2,7 +2,9 @@
 // Created by Jamie on 5/16/2019.
 //
 
-#pragma once
+#ifndef COMPILERASSIGNMENT_ASTFUNCTIONCALLNODE_H
+#define COMPILERASSIGNMENT_ASTFUNCTIONCALLNODE_H
+
 
 #include "../ASTFactorNode.h"
 
@@ -15,3 +17,5 @@ public:
     void Accept(Visitor *visitor) override;
 };
 
+
+#endif //COMPILERASSIGNMENT_ASTFUNCTIONCALLNODE_H
