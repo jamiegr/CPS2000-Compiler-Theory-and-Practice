@@ -9,9 +9,7 @@
 class ASTFloatNode : public ASTFactorNode {
 public:
     float floatValue;
-
     explicit ASTFloatNode(float floatValue);
-
     void Accept(Visitor *visitor) override;
 };
 

@@ -4,11 +4,11 @@
 
 #include "ASTBlockStatement.h"
 
-ASTBlockStatement::ASTBlockStatement(vector<ASTStatementNode *> *block) {
+ASTBlockStatement::ASTBlockStatement(vector<ASTStatementNode*> *block){
     this->block = block;
 }
 
-ASTBlockStatement::~ASTBlockStatement() {
+ASTBlockStatement::~ASTBlockStatement(){
     block->clear();
 }
 

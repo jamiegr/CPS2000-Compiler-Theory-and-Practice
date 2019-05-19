@@ -4,10 +4,10 @@
 
 #include "ASTFloat.h"
 
-ASTFloatNode::ASTFloatNode(float floatValue) {
+ASTFloatNode::ASTFloatNode(float floatValue){
     this->floatValue = floatValue;
 }
 
-void ASTFloatNode::Accept(Visitor *visitor) {
+void ASTFloatNode::Accept(Visitor *visitor){
     visitor->visit(this);
 }

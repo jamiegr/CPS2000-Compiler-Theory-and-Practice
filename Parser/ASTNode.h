@@ -6,7 +6,7 @@
 
 #include "../Visitor.h"
 
-class ASTNode {
+class ASTNode{
 public:
     virtual void Accept(Visitor *visitor) = 0;
 };

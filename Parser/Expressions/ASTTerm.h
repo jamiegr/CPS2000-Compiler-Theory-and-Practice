@@ -6,16 +6,13 @@
 
 #include "../ASTExpressionNode.h"
 
-class ASTTerm : ASTExpressionNode {
+class ASTTerm : ASTExpressionNode{
 public:
     ASTFactorNode *factor1;
     ASTMultOp *multOp;
     ASTFactorNode *factor2;
-
     ASTTerm(ASTFactorNode *factor1, ASTMultOp *multOp, ASTFactorNode *factor2);
-
     ~ASTTerm();
-
     void Accept(Visitor *visitor) override;
 };
 

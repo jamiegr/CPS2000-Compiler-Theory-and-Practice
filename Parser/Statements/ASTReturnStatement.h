@@ -6,13 +6,10 @@
 
 #include "../ASTStatementNode.h"
 
-class ASTReturnStatement : public ASTStatementNode {
+class ASTReturnStatement : public ASTStatementNode{
 public:
     ASTExpressionNode *expression;
-
     ASTReturnStatement(ASTExpressionNode *expression);
-
     ~ASTReturnStatement();
-
     void Accept(Visitor *visitor) override;
 };

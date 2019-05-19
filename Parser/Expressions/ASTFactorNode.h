@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "../ASTExpressionNode.h"
+#include "../ASTNode.h"
 
-class ASTFactorNode : public ASTExpressionNode {
+class ASTFactorNode : public ASTNode {
 public:
     void Accept(Visitor *visitor) override = 0;
 };

@@ -7,15 +7,12 @@
 #include "../ASTExpressionNode.h"
 #include "ASTType.h"
 
-class ASTFormalParam : ASTExpressionNode {
+class ASTFormalParam : ASTExpressionNode{
 public:
     ASTIdentifierNode *identifierNode;
     ASTType *type;
-
     ASTFormalParam(ASTIdentifierNode *identifierNode, ASTType *type);
-
     ~ASTFormalParam();
-
     void Accept(Visitor *visitor) override;
 };
 
