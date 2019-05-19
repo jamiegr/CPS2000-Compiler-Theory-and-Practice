@@ -8,7 +8,7 @@
 #include <vector>
 #include "../ASTExpressionNode.h"
 
-class ASTFormalParams : ASTExpressionNode {
+class ASTFormalParams : public ASTExpressionNode {
 public:
     vector<ASTFormalParam*> *formalParams;
     ASTFormalParams(vector<ASTFormalParam*> *formalParams);

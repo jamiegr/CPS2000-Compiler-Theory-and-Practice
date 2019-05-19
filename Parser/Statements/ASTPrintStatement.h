@@ -7,10 +7,11 @@
 
 
 #include "../ASTStatementNode.h"
+#include "../Expressions/ASTExpression.h"
 
 class ASTPrintStatement : public ASTStatementNode{
 public:
-    ASTExpressionNode *expression;
+    ASTExpression *expression;
     ASTPrintStatement(ASTExpressionNode *expression);
     ~ASTPrintStatement();
     void Accept(Visitor *visitor) override;

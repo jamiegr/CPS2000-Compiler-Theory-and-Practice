@@ -9,5 +9,5 @@ ASTIdentifierNode::ASTIdentifierNode(string value) {
 }
 
 void ASTIdentifierNode::Accept(Visitor *visitor) {
-    ASTFactorNode::Accept(visitor);
+    visitor->visit(this);
 }

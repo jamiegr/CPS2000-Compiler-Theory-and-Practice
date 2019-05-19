@@ -8,7 +8,7 @@
 
 #include "../ASTExpressionNode.h"
 
-class ASTTerm : ASTExpressionNode{
+class ASTTerm : public ASTExpressionNode{
 public:
     ASTFactorNode *factor1;
     ASTMultOp *multOp;

@@ -5,10 +5,8 @@
 #ifndef COMPILERASSIGNMENT_ASTBLOCKSTATEMENT_H
 #define COMPILERASSIGNMENT_ASTBLOCKSTATEMENT_H
 
-#include <Vector>
+#include <vector>
 #include "../ASTStatementNode.h"
-
-using namespace std;
 
 class ASTBlockStatement : public ASTStatementNode {
 public:

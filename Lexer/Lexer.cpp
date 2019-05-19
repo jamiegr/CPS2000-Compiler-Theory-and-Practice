@@ -83,7 +83,7 @@ void Lexer::clearStack() {
 }
 
 int Lexer::getNextState(char next) {
-    for(int i = 0; i < ALPHABET; i++){
+    for(int i = 0; i < 22; i++){
         if(classification_table[i](next)){
             return transition_table[current_state][i];
         }

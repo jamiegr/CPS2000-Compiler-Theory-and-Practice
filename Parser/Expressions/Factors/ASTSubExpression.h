@@ -9,7 +9,7 @@
 #include "../ASTExpression.h"
 #include "../ASTFactorNode.h"
 
-class ASTSubExpression : ASTFactorNode{
+class ASTSubExpression : public ASTFactorNode{
 public:
     ASTExpression *expression;
     ASTSubExpression(ASTExpression *expression);

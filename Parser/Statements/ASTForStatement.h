@@ -7,11 +7,12 @@
 
 
 #include "../ASTStatementNode.h"
+#include "../Expressions/ASTExpression.h"
 
 class ASTForStatement : public ASTStatementNode {
 public:
     ASTVariableDeclStatement *variableDeclStatement;
-    ASTExpressionNode *expression;
+    ASTExpression *expression;
     ASTAssignmentStatement *assignmentStatement;
     ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpressionNode *expression, ASTAssignmentStatement *assignmentStatement);
     ~ASTForStatement();

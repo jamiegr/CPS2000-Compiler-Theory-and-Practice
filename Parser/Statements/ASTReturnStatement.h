@@ -7,10 +7,11 @@
 
 
 #include "../ASTStatementNode.h"
+#include "../Expressions/ASTExpression.h"
 
 class ASTReturnStatement : public ASTStatementNode{
 public:
-    ASTExpressionNode *expression;
+    ASTExpression *expression;
     ASTReturnStatement(ASTExpressionNode *expression);
     ~ASTReturnStatement();
     void Accept(Visitor *visitor) override;

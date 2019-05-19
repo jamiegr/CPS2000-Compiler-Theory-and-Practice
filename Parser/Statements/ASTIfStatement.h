@@ -7,10 +7,11 @@
 
 
 #include "../ASTStatementNode.h"
+#include "../Expressions/ASTExpression.h"
 
 class ASTIfStatement : public ASTStatementNode{
 public:
-    ASTExpressionNode *expression;
+    ASTExpression *expression;
     ASTBlockStatement *ifBlock;
     ASTBlockStatement *elseBlock;
     ASTIfStatement(ASTExpressionNode *expression, ASTBlockStatement *ifBlock, ASTBlockStatement *elseBlock);
