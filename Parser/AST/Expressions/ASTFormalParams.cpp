@@ -3,8 +3,9 @@
 //
 
 #include "ASTFormalParams.h"
+#include "../../../Visitor/Visitor.h"
 
-ASTFormalParams::ASTFormalParams(vector<ASTFormalParam *> *formalParams) {
+ASTFormalParams::ASTFormalParams(std::vector<ASTFormalParam *> *formalParams) {
     this->formalParams = formalParams;
 }
 

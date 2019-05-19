@@ -3,6 +3,7 @@
 //
 
 #include "ASTType.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTType::ASTType(TYPE value) {
     this->value = value;

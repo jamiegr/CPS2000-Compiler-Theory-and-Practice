@@ -3,11 +3,12 @@
 //
 
 #include "ASTFloat.h"
+#include "../../../../Visitor/Visitor.h"
 
-ASTFloatNode::ASTFloatNode(float floatValue){
+ASTFloat::ASTFloat(float floatValue){
     this->floatValue = floatValue;
 }
 
-void ASTFloatNode::Accept(Visitor *visitor){
+void ASTFloat::Accept(Visitor *visitor){
     visitor->visit(this);
 }

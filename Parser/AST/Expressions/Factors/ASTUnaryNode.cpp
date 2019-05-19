@@ -3,6 +3,7 @@
 //
 
 #include "ASTUnaryNode.h"
+#include "../../../../Visitor/Visitor.h"
 
 ASTUnaryNode::ASTUnaryNode(ASTUnaryOp *unaryOp, ASTExpression *expression) {
     this->unaryOp = unaryOp;

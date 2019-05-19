@@ -3,6 +3,7 @@
 //
 
 #include "ASTActualParams.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTActualParams::ASTActualParams(std::vector<ASTExpression*> *parameters){
     this->parameters = parameters;

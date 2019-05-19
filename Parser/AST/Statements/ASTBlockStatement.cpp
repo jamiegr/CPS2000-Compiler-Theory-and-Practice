@@ -3,8 +3,9 @@
 //
 
 #include "ASTBlockStatement.h"
+#include "../../../Visitor/Visitor.h"
 
-ASTBlockStatement::ASTBlockStatement(vector<ASTStatementNode*> *block){
+ASTBlockStatement::ASTBlockStatement(std::vector<ASTStatementNode*> *block){
     this->block = block;
 }
 

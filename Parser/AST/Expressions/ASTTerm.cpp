@@ -3,6 +3,7 @@
 //
 
 #include "ASTTerm.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTTerm::ASTTerm(ASTFactorNode *factor1, ASTMultOp *multOp, ASTFactorNode *factor2) {
     this->factor1 = factor1;

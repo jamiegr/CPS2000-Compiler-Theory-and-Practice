@@ -3,6 +3,7 @@
 //
 
 #include "ASTSimpleExpression.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTSimpleExpression::ASTSimpleExpression(ASTTerm *term1, ASTAddOp *addOp, ASTTerm *term2) {
     this->term1 = term1;

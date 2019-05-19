@@ -3,6 +3,7 @@
 //
 
 #include "ASTFunctionDeclStatement.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTFunctionDeclStatement::ASTFunctionDeclStatement(ASTIdentifierNode *identifierNode, ASTFormalParams *formalParams,
                                                    ASTType *type, ASTBlockStatement *blockStatement) {

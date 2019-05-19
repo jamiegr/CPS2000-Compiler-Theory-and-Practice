@@ -3,6 +3,7 @@
 //
 
 #include "ASTPrintStatement.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTPrintStatement::ASTPrintStatement(ASTExpression *expression) {
     this->expression = expression;

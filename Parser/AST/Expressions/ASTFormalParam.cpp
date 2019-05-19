@@ -3,6 +3,7 @@
 //
 
 #include "ASTFormalParam.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTFormalParam::ASTFormalParam(ASTIdentifierNode *identifierNode, ASTType *type) {
     this->identifierNode = identifierNode;
@@ -15,5 +16,5 @@ ASTFormalParam::~ASTFormalParam() {
 }
 
 void ASTFormalParam::Accept(Visitor *visitor) {
-    visitor->visit(this)
+    visitor->visit(this);
 }

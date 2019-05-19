@@ -3,6 +3,7 @@
 //
 
 #include "ASTUnaryOp.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTUnaryOp::ASTUnaryOp(UNARY_OP value) {
     this->value = value;

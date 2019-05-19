@@ -3,8 +3,9 @@
 //
 
 #include "ASTIdentifierNode.h"
+#include "../../../../Visitor/Visitor.h"
 
-ASTIdentifierNode::ASTIdentifierNode(string value) {
+ASTIdentifierNode::ASTIdentifierNode(std::string value) {
     this->value = value;
 }
 

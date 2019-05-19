@@ -3,15 +3,16 @@
 //
 
 #include "ASTAssignmentStatement.h"
+#include "../../../Visitor/Visitor.h"
 
-ASTAssignmentStatement::ASTAssignmentStatement(ASTIdentifierNode *identifierNode, ASTExpressionNode *expressionNode){//class constructor
+ASTAssignmentStatement::ASTAssignmentStatement(ASTIdentifierNode *identifierNode, ASTExpression *expressionNode){//class constructor
     this->identifierNode = identifierNode;
-    this->expressionNode = expressionNode;
+    this->expression = expressionNode;
 }
 
 ASTAssignmentStatement::~ASTAssignmentStatement(){//class destructor
     delete identifierNode;
-    delete expressionNode;
+    delete expression;
 }
 
 void ASTAssignmentStatement::Accept(Visitor *visitor){

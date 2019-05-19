@@ -3,6 +3,7 @@
 //
 
 #include "ASTSubExpression.h"
+#include "../../../../Visitor/Visitor.h"
 
 ASTSubExpression::ASTSubExpression(ASTExpression *expression) {
     this->expression = expression;

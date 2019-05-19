@@ -3,6 +3,7 @@
 //
 
 #include "ASTExpression.h"
+#include "../../../Visitor/Visitor.h"
 
 ASTExpression::ASTExpression(ASTSimpleExpression *simpleExpression1, ASTRelOp *relOp,
                              ASTSimpleExpression *simpleExpression2) {

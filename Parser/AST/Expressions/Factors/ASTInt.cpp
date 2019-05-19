@@ -3,6 +3,7 @@
 //
 
 #include "ASTInt.h"
+#include "../../../../Visitor/Visitor.h"
 
 ASTInt::ASTInt(int value) {
     this->value = value;
