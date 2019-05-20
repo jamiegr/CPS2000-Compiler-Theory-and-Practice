@@ -5,13 +5,13 @@
 #ifndef COMPILERASSIGNMENT_ASTMULTOP_H
 #define COMPILERASSIGNMENT_ASTMULTOP_H
 
-#include "../ASTNode.h"
+#include "../ASTExpressionNode.h"
 
 enum MULT_OP {
     MULTIPLICATION = 1, DIVISION = 2, AND = 3
 };
 
-class ASTMultOp : public ASTNode {
+class ASTMultOp : public ASTExpressionNode {
 public:
     MULT_OP value;
 

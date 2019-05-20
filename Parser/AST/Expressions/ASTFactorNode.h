@@ -6,9 +6,9 @@
 #define COMPILERASSIGNMENT_ASTFACTORNODE_H
 
 
-#include "../ASTNode.h"
+#include "../ASTExpressionNode.h"
 
-class ASTFactorNode : public ASTNode {
+class ASTFactorNode : public ASTExpressionNode {
 public:
     void Accept(Visitor *visitor) override = 0;
 };

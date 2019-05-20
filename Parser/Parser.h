@@ -6,8 +6,17 @@
 #define COMPILERASSIGNMENT_PARSER_H
 
 
-class Parser {
+#include "../Lexer/Lexer.h"
+#include "AST/ASTNode.h"
 
+class Parser {
+public:
+    Parser(Lexer lexer);
+    ~Parser();
+    ASTNode *parseNode();
+private:
+    Lexer lexer;
+    Token currentToken, nextToken;
 };
 
 

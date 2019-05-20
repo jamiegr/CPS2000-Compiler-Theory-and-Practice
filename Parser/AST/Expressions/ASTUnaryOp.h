@@ -5,13 +5,13 @@
 #ifndef COMPILERASSIGNMENT_ASTUNARYOP_H
 #define COMPILERASSIGNMENT_ASTUNARYOP_H
 
-#include "../ASTNode.h"
+#include "../ASTExpressionNode.h"
 
 enum UNARY_OP {
     NEGATIVE = 1, NOT = 2
 };
 
-class ASTUnaryOp : public ASTNode {
+class ASTUnaryOp : public ASTExpressionNode {
 public:
     UNARY_OP value;
 

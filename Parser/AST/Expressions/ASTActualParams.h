@@ -6,10 +6,9 @@
 #define COMPILERASSIGNMENT_ASTACTUALPARAMS_H
 
 #include <vector>
-#include "../ASTNode.h"
 #include "ASTExpression.h"
 
-class ASTActualParams : public ASTNode {
+class ASTActualParams : public ASTExpressionNode {
 public:
     std::vector<ASTExpression *> *parameters;
 

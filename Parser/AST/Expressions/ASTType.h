@@ -6,13 +6,13 @@
 #define COMPILERASSIGNMENT_ASTTYPE_H
 
 
-#include "../ASTNode.h"
+#include "../ASTExpressionNode.h"
 
 enum TYPE {
     FLOAT = 1, INT = 2, BOOL = 3
 };
 
-class ASTType : public ASTNode {
+class ASTType : public ASTExpressionNode {
 public:
     TYPE value;
 

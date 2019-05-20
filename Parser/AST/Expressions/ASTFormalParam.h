@@ -6,11 +6,10 @@
 #define COMPILERASSIGNMENT_ASTFORMALPARAMNODE_H
 
 
-#include "../ASTNode.h"
 #include "ASTType.h"
 #include "Factors/ASTIdentifierNode.h"
 
-class ASTFormalParam : public ASTNode {
+class ASTFormalParam : public ASTExpressionNode {
 public:
     ASTIdentifierNode *identifierNode;
     ASTType *type;

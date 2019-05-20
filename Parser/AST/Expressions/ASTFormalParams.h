@@ -6,10 +6,9 @@
 #define COMPILERASSIGNMENT_ASTFORMALPARAMS_H
 
 #include <vector>
-#include "../ASTNode.h"
 #include "ASTFormalParam.h"
 
-class ASTFormalParams : public ASTNode {
+class ASTFormalParams : public ASTExpressionNode {
 public:
     std::vector<ASTFormalParam *> *formalParams;
 

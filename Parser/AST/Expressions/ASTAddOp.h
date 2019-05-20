@@ -5,13 +5,13 @@
 #ifndef COMPILERASSIGNMENT_ASTADDOP_H
 #define COMPILERASSIGNMENT_ASTADDOP_H
 
-#include "../ASTNode.h"
+#include "../ASTExpressionNode.h"
 
 enum ADD_OP {
     PLUS = 1, MINUS = 2, OR = 3
 };
 
-class ASTAddOp : public ASTNode {
+class ASTAddOp : public ASTExpressionNode {
 public:
     ADD_OP value;
 

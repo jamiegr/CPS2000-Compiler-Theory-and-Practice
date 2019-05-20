@@ -6,11 +6,11 @@
 #define COMPILERASSIGNMENT_ASTTERM_H
 
 
-#include "../ASTNode.h"
 #include "ASTFactorNode.h"
 #include "ASTMultOp.h"
+#include "../ASTExpressionNode.h"
 
-class ASTTerm : public ASTNode {
+class ASTTerm : public ASTExpressionNode {
 public:
     ASTFactorNode *factor1;
     ASTMultOp *multOp;

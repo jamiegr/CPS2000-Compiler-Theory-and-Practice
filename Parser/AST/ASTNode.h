@@ -5,7 +5,7 @@
 #ifndef COMPILERASSIGNMENT_ASTNODE_H
 #define COMPILERASSIGNMENT_ASTNODE_H
 
-class Visitor;
+class Visitor;//forward declaration of visitor class to be imported in subclasses with an accept visitor implementation
 
 class ASTNode {
 public:

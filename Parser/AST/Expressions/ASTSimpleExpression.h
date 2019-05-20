@@ -9,7 +9,7 @@
 #include "ASTTerm.h"
 #include "ASTAddOp.h"
 
-class ASTSimpleExpression : public ASTNode {
+class ASTSimpleExpression : public ASTExpressionNode {
 public:
     ASTTerm *term1;
     ASTAddOp *addOp;
