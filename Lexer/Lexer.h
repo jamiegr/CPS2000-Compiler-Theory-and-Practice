@@ -26,6 +26,9 @@ using namespace std;
 class Lexer {
 
 public:
+
+    Lexer();
+
     Lexer(string file_address);//lexer constructor with address of file to read instructions from
 
     Token getNextToken();//get next token function to return next token in program for parser as specified in assignment description

@@ -105,3 +105,5 @@ TOK_TYPE Lexer::classifyIdentifier(string identifier) {//checks if an identifier
     if(identifier == "fn") return TOK_FUNC_DECL;
     return TOK_IDENTIFIER;
 }
+
+Lexer::Lexer() = default;

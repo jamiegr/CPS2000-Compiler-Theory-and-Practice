@@ -21,7 +21,9 @@ private:
 
 public:
 
-    Token(TOK_TYPE tokentype, string tokenvalue);//default constructor
+    Token();//default constructor
+
+    Token(TOK_TYPE tokentype, string tokenvalue);
 
     TOK_TYPE getType();
 

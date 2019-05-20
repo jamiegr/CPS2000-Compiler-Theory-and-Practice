@@ -4,9 +4,9 @@
 
 #include "Parser.h"
 
-//Parser::Parser(Lexer lexer) {
-
-//}
+Parser::Parser(Lexer lexer) {
+    this->lexer = lexer;
+}
 
 Parser::~Parser() {
 
@@ -15,3 +15,5 @@ Parser::~Parser() {
 ASTNode *Parser::parseNode() {
     return nullptr;
 }
+
+

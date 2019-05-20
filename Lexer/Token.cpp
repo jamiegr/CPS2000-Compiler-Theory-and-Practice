@@ -16,3 +16,5 @@ TOK_TYPE Token::getType() {//type getter
 string Token::getValue() {
     return value;
 }
+
+Token::Token() = default;
