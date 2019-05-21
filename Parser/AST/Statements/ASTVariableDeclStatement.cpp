@@ -6,7 +6,7 @@
 #include "../../../Visitor/Visitor.h"
 
 ASTVariableDeclStatement::ASTVariableDeclStatement(ASTIdentifierNode *identifierNode, ASTType *type,
-                                                   ASTExpression *expression) {
+                                                   ASTExpressionNode *expression) {
     this->identifierNode = identifierNode;
     this->type = type;
     this->expression = expression;

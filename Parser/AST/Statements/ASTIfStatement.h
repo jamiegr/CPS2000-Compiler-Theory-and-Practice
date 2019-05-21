@@ -12,11 +12,11 @@
 
 class ASTIfStatement : public ASTStatementNode {
 public:
-    ASTExpression *expression;
+    ASTExpressionNode *expression;
     ASTBlockStatement *ifBlock;
     ASTBlockStatement *elseBlock;
 
-    ASTIfStatement(ASTExpression *expression, ASTBlockStatement *ifBlock, ASTBlockStatement *elseBlock);
+    ASTIfStatement(ASTExpressionNode *expression, ASTBlockStatement *ifBlock, ASTBlockStatement *elseBlock);
 
     ~ASTIfStatement();
 

@@ -10,11 +10,11 @@
 #include "../Expressions/ASTExpression.h"
 #include "../Expressions/Factors/ASTIdentifierNode.h"
 
-class ASTAssignmentStatement : ASTStatementNode {
+class ASTAssignmentStatement : public ASTStatementNode {
 public:
     ASTIdentifierNode *identifierNode;//the identifier which is being assigned a value
-    ASTExpression *expression;//the expression whose result is to be assigned to the identifier
-    ASTAssignmentStatement(ASTIdentifierNode *identifierNode, ASTExpression *expressionNode);
+    ASTExpressionNode *expression;//the expression whose result is to be assigned to the identifier
+    ASTAssignmentStatement(ASTIdentifierNode *identifierNode, ASTExpressionNode *expressionNode);
 
     ~ASTAssignmentStatement();
 

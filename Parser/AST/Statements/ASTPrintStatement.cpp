@@ -5,7 +5,7 @@
 #include "ASTPrintStatement.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTPrintStatement::ASTPrintStatement(ASTExpression *expression) {
+ASTPrintStatement::ASTPrintStatement(ASTExpressionNode *expression) {
     this->expression = expression;
 }
 

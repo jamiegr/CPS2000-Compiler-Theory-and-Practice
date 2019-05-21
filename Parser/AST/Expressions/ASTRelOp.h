@@ -16,7 +16,7 @@ enum REL_OP {
     GREATER_THAN_OR_EQUAL_TO = 6
 };
 
-class ASTRelOp : public ASTExpressionNode {
+class ASTRelOp : public ASTNode {
 public:
     REL_OP value;
 

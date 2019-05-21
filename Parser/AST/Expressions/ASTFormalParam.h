@@ -9,7 +9,7 @@
 #include "ASTType.h"
 #include "Factors/ASTIdentifierNode.h"
 
-class ASTFormalParam : public ASTExpressionNode {
+class ASTFormalParam : public ASTNode {
 public:
     ASTIdentifierNode *identifierNode;
     ASTType *type;

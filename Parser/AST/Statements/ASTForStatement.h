@@ -14,10 +14,10 @@
 class ASTForStatement : public ASTStatementNode {
 public:
     ASTVariableDeclStatement *variableDeclStatement;
-    ASTExpression *expression;
+    ASTExpressionNode *expression;
     ASTAssignmentStatement *assignmentStatement;
 
-    ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpression *expression,
+    ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpressionNode *expression,
                     ASTAssignmentStatement *assignmentStatement);
 
     ~ASTForStatement();

@@ -11,7 +11,7 @@ enum UNARY_OP {
     NEGATIVE = 1, NOT = 2
 };
 
-class ASTUnaryOp : public ASTExpressionNode {
+class ASTUnaryOp : public ASTNode {
 public:
     UNARY_OP value;
 

@@ -8,11 +8,11 @@
 #include <vector>
 #include "ASTExpression.h"
 
-class ASTActualParams : public ASTExpressionNode {
+class ASTActualParams : public ASTNode {
 public:
-    std::vector<ASTExpression *> *parameters;
+    std::vector<ASTExpressionNode *> *parameters;
 
-    explicit ASTActualParams(std::vector<ASTExpression *> *parameters);
+    explicit ASTActualParams(std::vector<ASTExpressionNode *> *parameters);
 
     ~ASTActualParams();
 

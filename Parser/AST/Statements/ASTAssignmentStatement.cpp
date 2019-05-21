@@ -6,7 +6,7 @@
 #include "../../../Visitor/Visitor.h"
 
 ASTAssignmentStatement::ASTAssignmentStatement(ASTIdentifierNode *identifierNode,
-                                               ASTExpression *expressionNode) {//class constructor
+                                               ASTExpressionNode *expressionNode) {//class constructor
     this->identifierNode = identifierNode;
     this->expression = expressionNode;
 }

@@ -5,7 +5,7 @@
 #include "ASTUnaryNode.h"
 #include "../../../../Visitor/Visitor.h"
 
-ASTUnaryNode::ASTUnaryNode(ASTUnaryOp *unaryOp, ASTExpression *expression) {
+ASTUnaryNode::ASTUnaryNode(ASTUnaryOp *unaryOp, ASTExpressionNode *expression) {
     this->unaryOp = unaryOp;
     this->expression = expression;
 }

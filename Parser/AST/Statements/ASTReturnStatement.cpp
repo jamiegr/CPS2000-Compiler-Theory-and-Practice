@@ -5,7 +5,7 @@
 #include "ASTReturnStatement.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTReturnStatement::ASTReturnStatement(ASTExpression *expression) {
+ASTReturnStatement::ASTReturnStatement(ASTExpressionNode *expression) {
     this->expression = expression;
 }
 

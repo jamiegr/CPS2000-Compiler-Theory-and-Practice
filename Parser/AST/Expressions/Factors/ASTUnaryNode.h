@@ -13,9 +13,9 @@
 class ASTUnaryNode : public ASTFactorNode {
 public:
     ASTUnaryOp *unaryOp;
-    ASTExpression *expression;
+    ASTExpressionNode *expression;
 
-    ASTUnaryNode(ASTUnaryOp *unaryOp, ASTExpression *expression);
+    ASTUnaryNode(ASTUnaryOp *unaryOp, ASTExpressionNode *expression);
 
     ~ASTUnaryNode();
 

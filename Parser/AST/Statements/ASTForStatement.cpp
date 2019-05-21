@@ -5,7 +5,7 @@
 #include "ASTForStatement.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTForStatement::ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpression *expression,
+ASTForStatement::ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpressionNode *expression,
                                  ASTAssignmentStatement *assignmentStatement) {
     this->variableDeclStatement = variableDeclStatement;
     this->expression = expression;

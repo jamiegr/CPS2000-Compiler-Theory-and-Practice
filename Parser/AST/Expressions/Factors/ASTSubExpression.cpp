@@ -5,7 +5,7 @@
 #include "ASTSubExpression.h"
 #include "../../../../Visitor/Visitor.h"
 
-ASTSubExpression::ASTSubExpression(ASTExpression *expression) {
+ASTSubExpression::ASTSubExpression(ASTExpressionNode *expression) {
     this->expression = expression;
 }
 

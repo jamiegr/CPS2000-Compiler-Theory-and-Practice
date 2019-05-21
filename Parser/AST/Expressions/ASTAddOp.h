@@ -11,7 +11,7 @@ enum ADD_OP {
     PLUS = 1, MINUS = 2, OR = 3
 };
 
-class ASTAddOp : public ASTExpressionNode {
+class ASTAddOp : public ASTNode {
 public:
     ADD_OP value;
 

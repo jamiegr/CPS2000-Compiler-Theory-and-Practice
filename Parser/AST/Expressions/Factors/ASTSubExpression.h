@@ -11,9 +11,9 @@
 
 class ASTSubExpression : public ASTFactorNode {
 public:
-    ASTExpression *expression;
+    ASTExpressionNode *expression;
 
-    ASTSubExpression(ASTExpression *expression);
+    ASTSubExpression(ASTExpressionNode *expression);
 
     ~ASTSubExpression();
 

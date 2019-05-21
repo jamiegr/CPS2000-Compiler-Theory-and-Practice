@@ -11,9 +11,9 @@
 
 class ASTReturnStatement : public ASTStatementNode {
 public:
-    ASTExpression *expression;
+    ASTExpressionNode *expression;
 
-    ASTReturnStatement(ASTExpression *expression);
+    ASTReturnStatement(ASTExpressionNode *expression);
 
     ~ASTReturnStatement();
 

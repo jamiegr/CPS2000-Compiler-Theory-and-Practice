@@ -12,7 +12,7 @@ enum TYPE {
     FLOAT = 1, INT = 2, BOOL = 3
 };
 
-class ASTType : public ASTExpressionNode {
+class ASTType : public ASTNode {
 public:
     TYPE value;
 

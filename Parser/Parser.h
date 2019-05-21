@@ -32,13 +32,17 @@ public:
 
 private:
     Lexer lexer;
-    Token currentToken;
+    Token currentToken, nextToken;
+
+    void moveToNext();
 
     ASTNode *parse();
 
     ASTBool *parseBool();
 
     ASTFloat *parseFloat();
+
+    ASTFactorNode *parseFactor();
 
     ASTFunctionCall *parseFunctionCall();
 
@@ -52,9 +56,11 @@ private:
 
     ASTActualParams *parseActualParams();
 
+    ASTActualParams *parseActualParams(vector<ASTExpressionNode*> *actualParams);
+
     ASTAddOp *parseAddOp();
 
-    ASTExpression *parseExpression();
+    ASTExpressionNode *parseExpression();
 
     ASTFormalParam *parseFormalParam();
 

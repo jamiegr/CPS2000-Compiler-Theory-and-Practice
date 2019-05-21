@@ -9,6 +9,7 @@
 
 class ASTStatementNode : public ASTNode {
 public:
+    virtual ~ASTStatementNode() = default;//default destructor for abstract class
     void Accept(Visitor *visitor) override = 0;
 };
 

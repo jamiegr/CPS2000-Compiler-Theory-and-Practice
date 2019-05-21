@@ -15,9 +15,9 @@ class ASTVariableDeclStatement : public ASTStatementNode {
 public:
     ASTIdentifierNode *identifierNode;
     ASTType *type;
-    ASTExpression *expression;
+    ASTExpressionNode *expression;
 
-    ASTVariableDeclStatement(ASTIdentifierNode *identifierNode, ASTType *type, ASTExpression *expression);
+    ASTVariableDeclStatement(ASTIdentifierNode *identifierNode, ASTType *type, ASTExpressionNode *expression);
 
     ~ASTVariableDeclStatement();
 

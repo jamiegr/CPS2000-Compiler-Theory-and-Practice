@@ -11,9 +11,9 @@
 
 class ASTPrintStatement : public ASTStatementNode {
 public:
-    ASTExpression *expression;
+    ASTExpressionNode *expression;
 
-    ASTPrintStatement(ASTExpression *expression);
+    ASTPrintStatement(ASTExpressionNode *expression);
 
     ~ASTPrintStatement();
 

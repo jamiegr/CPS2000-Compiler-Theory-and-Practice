@@ -11,7 +11,7 @@ enum MULT_OP {
     MULTIPLICATION = 1, DIVISION = 2, AND = 3
 };
 
-class ASTMultOp : public ASTExpressionNode {
+class ASTMultOp : public ASTNode {
 public:
     MULT_OP value;
 

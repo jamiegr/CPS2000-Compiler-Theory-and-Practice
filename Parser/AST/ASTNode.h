@@ -9,6 +9,7 @@ class Visitor;//forward declaration of visitor class to be imported in subclasse
 
 class ASTNode {
 public:
+    virtual ~ASTNode() = default;// virtual destructor for abstract class
     virtual void Accept(Visitor *visitor) = 0;
 };
 
