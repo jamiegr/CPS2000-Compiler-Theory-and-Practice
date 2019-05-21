@@ -5,8 +5,8 @@
 #include "ASTExpression.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTExpression::ASTExpression(ASTSimpleExpression *simpleExpression1, ASTRelOp *relOp,
-                             ASTSimpleExpression *simpleExpression2) {
+ASTExpression::ASTExpression(ASTExpressionNode *simpleExpression1, ASTRelOp *relOp,
+                             ASTExpressionNode *simpleExpression2) {
     this->simpleExpression1 = simpleExpression1;
     this->relOp = relOp;
     this->simpleExpression2 = simpleExpression2;

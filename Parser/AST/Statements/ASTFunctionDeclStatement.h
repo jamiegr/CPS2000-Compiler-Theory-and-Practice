@@ -8,7 +8,7 @@
 
 #include "../ASTStatementNode.h"
 #include "../Expressions/Factors/ASTIdentifierNode.h"
-#include "../Expressions/ASTFormalParams.h"
+#include "../Other/ASTFormalParams.h"
 #include "ASTBlockStatement.h"
 
 class ASTFunctionDeclStatement : public ASTStatementNode {

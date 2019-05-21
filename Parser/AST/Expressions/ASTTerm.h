@@ -7,7 +7,7 @@
 
 
 #include "ASTFactorNode.h"
-#include "ASTMultOp.h"
+#include "../Other/ASTMultOp.h"
 #include "../ASTExpressionNode.h"
 
 class ASTTerm : public ASTExpressionNode {

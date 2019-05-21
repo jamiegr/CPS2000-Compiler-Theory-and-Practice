@@ -5,7 +5,7 @@
 #include "ASTSimpleExpression.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTSimpleExpression::ASTSimpleExpression(ASTTerm *term1, ASTAddOp *addOp, ASTTerm *term2) {
+ASTSimpleExpression::ASTSimpleExpression(ASTExpressionNode *term1, ASTAddOp *addOp, ASTExpressionNode *term2) {
     this->term1 = term1;
     this->addOp = addOp;
     this->term2 = term2;

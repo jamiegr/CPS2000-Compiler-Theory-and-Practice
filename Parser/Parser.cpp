@@ -19,6 +19,7 @@ vector<ASTNode *> *Parser::buildAST() {
         currentNode = parse();
         if(currentNode != nullptr){
             AST->push_back(currentNode);
+            cout << "Successfully parsed statement" << endl;
         }else{
             cout << "Parsing error occured, parser terminating." << endl;
             return nullptr;
@@ -27,7 +28,7 @@ vector<ASTNode *> *Parser::buildAST() {
     return AST;
 }
 
-ASTNode *Parser::parse() {
+ASTStatementNode *Parser::parse() {
     switch(currentToken.getType()){
         case TOK_VAR_DECL: return parseVariableDeclStatement();
         case TOK_PRINT: return parsePrintStatement();
@@ -226,85 +227,448 @@ ASTActualParams *Parser::parseActualParams(vector<ASTExpressionNode *> *actualPa
 
 ASTAddOp *Parser::parseAddOp() {
     if(currentToken.getType() == TOK_ADD_OP){
-        if(currentToken.getValue() == "+") return new ASTAddOp(PLUS);
-        else if(currentToken.getValue() == "-") return new ASTAddOp(MINUS);
-        else if(currentToken.getValue() == "or") return new ASTAddOp(OR);
-        else{
-            cout << "Parsing error occurred when parsing add op token" << endl;
+        if(currentToken.getValue() == "+"){
+            moveToNext();
+            return new ASTAddOp(PLUS);
+        }else if(currentToken.getValue() == "-"){
+            moveToNext();
+            return new ASTAddOp(MINUS);
+        }else if(currentToken.getValue() == "or"){
+            moveToNext();
+            return new ASTAddOp(OR);
+        }else{
+            cout << "Parsing error occurred when parsing add op node" << endl;
             return nullptr;
         }
     }else{
-        cout << "Parsing error occurred when parsing add op token" << endl;
+        cout << "Parsing error occurred when parsing add op node" << endl;
         return nullptr;
     }
 }
 
 ASTExpressionNode *Parser::parseExpression() {
+    ASTExpressionNode *simpleExpression = parseSimpleExpression();
+    if(currentToken.getType() == TOK_REL_OP){
+        ASTRelOp *relOp = parseRelOp();
+        ASTExpressionNode *simpleExpression2 = parseSimpleExpression();
+        if(simpleExpression != nullptr && relOp != nullptr && simpleExpression2 != nullptr) return new ASTExpression(simpleExpression, relOp, simpleExpression2);
+        else{
+            cout << "Parsing error occurred when parsing expression" << endl;
+            return nullptr;
+        }
+    }else return simpleExpression;
+}
 
+ASTExpressionNode *Parser::parseSimpleExpression() {
+    ASTExpressionNode *term = parseTerm();
+    if(currentToken.getType() == TOK_ADD_OP){
+        ASTAddOp *addOp = parseAddOp();
+        ASTExpressionNode *term2 = parseTerm();
+        if(term != nullptr && addOp != nullptr && term2 != nullptr) return new ASTSimpleExpression(term, addOp, term2);
+        else{
+            cout << "Parsing error occurred when parsing expression" << endl;
+            return nullptr;
+        }
+    }else return term;
+}
+
+ASTExpressionNode *Parser::parseTerm() {
+    ASTFactorNode *factorNode = parseFactor();
+    if(currentToken.getType() == TOK_ADD_OP){
+        ASTMultOp *multOp = parseMultOp();
+        ASTFactorNode *factorNode2 = parseFactor();
+        if(factorNode != nullptr && multOp != nullptr && factorNode2 != nullptr) return new ASTTerm(factorNode, multOp, factorNode2);
+        else{
+            cout << "Parsing error occurred when parsing expression" << endl;
+            return nullptr;
+        }
+    }else return factorNode;
 }
 
 ASTFormalParam *Parser::parseFormalParam() {
-    return nullptr;
+    ASTIdentifierNode *identifierNode = parseIdentifierNode();
+    ASTType *type;
+    if(currentToken.getType() == TOK_COLON) moveToNext();
+    else{
+        cout << "Error occurred when parsing Formal Param node: expected ':' after identifier" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_TYPE_DECL) type = parseType();
+    else{
+        cout << "Error occurred when parsing Formal Param node: expected type after ':'" << endl;
+        return nullptr;
+    }
+    if(identifierNode != nullptr && type != nullptr) return new ASTFormalParam(identifierNode, type);
+    else{
+        cout << "Error occurred when parsing Formal Param node" << endl;
+        return nullptr;
+    }
 }
 
 ASTFormalParams *Parser::parseFormalParams() {
-    return nullptr;
+    vector<ASTFormalParam*> *formalParams = new vector<ASTFormalParam*>;
+    ASTFormalParam *formalParam = parseFormalParam();
+    if(formalParam != nullptr) formalParams->push_back(formalParam);
+    else{
+        cout << "Parsing error occurred when parsing formal parameters node" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_COMMA){
+        if(nextToken.getType() == TOK_CLOSE_PARENTHESES){
+            cout << "Parsing error occurred when parsing formal parameters node: expression expected after comma, got ')' instead" << endl;
+            return nullptr;
+        }else{
+            moveToNext();
+            return parseFormalParams(formalParams);
+        }
+    }else if(currentToken.getType() == TOK_CLOSE_PARENTHESES){
+        moveToNext();
+        return new ASTFormalParams(formalParams);
+    }else{
+        cout << "Parsing error occurred when parsing formal parameters node" << endl;
+        return nullptr;
+    }
+}
+
+ASTFormalParams *Parser::parseFormalParams(vector<ASTFormalParam *> *formalParams) {
+    ASTFormalParam *formalParam = parseFormalParam();
+    if(formalParam != nullptr) formalParams->push_back(formalParam);
+    else{
+        cout << "Parsing error occurred when parsing formal parameters node" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_COMMA){
+        if(nextToken.getType() == TOK_CLOSE_PARENTHESES){
+            cout << "Parsing error occurred when parsing formal parameters node: expression expected after comma, got ')' instead" << endl;
+            return nullptr;
+        }else{
+            moveToNext();
+            return parseFormalParams(formalParams);
+        }
+    }else if(currentToken.getType() == TOK_CLOSE_PARENTHESES){
+        moveToNext();
+        return new ASTFormalParams(formalParams);
+    }else{
+        cout << "Parsing error occurred when parsing formal parameters node" << endl;
+        return nullptr;
+    }
 }
 
 ASTMultOp *Parser::parseMultOp() {
-    return nullptr;
+    if(currentToken.getType() == TOK_MULT_OP){
+        if(currentToken.getValue() == "*"){
+            moveToNext();
+            return new ASTMultOp(MULTIPLICATION);
+        }else if(currentToken.getValue() == "/"){
+            moveToNext();
+            return new ASTMultOp(DIVISION);
+        }else if(currentToken.getValue() == "and"){
+            moveToNext();
+            return new ASTMultOp(AND);
+        }else{
+            cout << "Parsing error occurred when parsing mult op node" << endl;
+            return nullptr;
+        }
+    }else{
+        cout << "Parsing error occurred when parsing mult op node" << endl;
+        return nullptr;
+    }
 }
 
 ASTRelOp *Parser::parseRelOp() {
-    return nullptr;
-}
-
-ASTSimpleExpression *Parser::parseSimpleExpression() {
-    return nullptr;
-}
-
-ASTTerm *Parser::parseTerm() {
-    return nullptr;
+    if(currentToken.getType() == TOK_REL_OP){
+        if(currentToken.getValue() == "<"){
+            moveToNext();
+            return new ASTRelOp(LESS_THAN);
+        }else if(currentToken.getValue() == ">"){
+            moveToNext();
+            return new ASTRelOp(GREATER_THAN);
+        }else if(currentToken.getValue() == "=="){
+            moveToNext();
+            return new ASTRelOp(EQUAL_TO);
+        }else if(currentToken.getValue() == "!="){
+            moveToNext();
+            return new ASTRelOp(NOT_EQUAL_TO);
+        }else if(currentToken.getValue() == "<="){
+            moveToNext();
+            return new ASTRelOp(LESS_THAN_OR_EQUAL_TO);
+        }else if(currentToken.getValue() == ">="){
+            moveToNext();
+            return new ASTRelOp(GREATER_THAN_OR_EQUAL_TO);
+        }else{
+            cout << "Parsing error occurred when parsing mult op node" << endl;
+            return nullptr;
+        }
+    }else{
+        cout << "Parsing error occurred when parsing mult op node" << endl;
+        return nullptr;
+    }
 }
 
 ASTType *Parser::parseType() {
-    return nullptr;
+    if(currentToken.getType() == TOK_TYPE_DECL){
+        if(currentToken.getValue() == "float"){
+            moveToNext();
+            return new ASTType(FLOAT);
+        }else if(currentToken.getValue() == "int"){
+            moveToNext();
+            return new ASTType(INT);
+        }else if(currentToken.getValue() == "bool"){
+            moveToNext();
+            return new ASTType(BOOL);
+        }else{
+            cout << "Parsing error occurred when parsing mult op node" << endl;
+            return nullptr;
+        }
+    }else{
+        cout << "Parsing error occurred when parsing mult op node" << endl;
+        return nullptr;
+    }
 }
 
 ASTUnaryOp *Parser::parseUnaryOp() {
-    return nullptr;
+    if(currentToken.getType() == TOK_UNARY_OP){
+        moveToNext();
+        return new ASTUnaryOp(NOT);
+    }else if(currentToken.getType() == TOK_ADD_OP && currentToken.getValue() == "-") {
+        moveToNext();
+        return new ASTUnaryOp(NEGATIVE);
+    }else{
+        cout << "Parsing error occurred when parsing mult op node" << endl;
+        return nullptr;
+    }
 }
 
 ASTAssignmentStatement *Parser::parseAssignmentStatement() {
-    return nullptr;
+    ASTIdentifierNode *identifierNode = parseIdentifierNode();
+    if(currentToken.getType() == TOK_ASSIGNMENT_OP) moveToNext();
+    else{
+        cout << "Error occurred when parsing assignment statement node: ':' expected after identifier" << endl;
+        return nullptr;
+    }
+    ASTExpressionNode *expressionNode = parseExpression();
+    if(identifierNode != nullptr && expressionNode != nullptr){
+        if(currentToken.getType() == TOK_SEMICOLON){
+            moveToNext();
+            return new ASTAssignmentStatement(identifierNode, expressionNode);
+        }else{
+            cout << "Error occurred when parsing assignment statement: missing semicolon" << endl;
+            return nullptr;
+        }
+    }else{
+        cout << "Error occurred when parsing assignment statement node" << endl;
+        return nullptr;
+    }
 }
 
 ASTBlockStatement *Parser::parseBlockStatement() {
-    return nullptr;
+    vector<ASTStatementNode*> *statements = new vector<ASTStatementNode*>;
+    if(currentToken.getType() == TOK_OPEN_SCOPE) moveToNext();
+    else{
+        cout << "Error occurred when parsing block of statements, open scope not found" << endl;
+        return nullptr;
+    }
+    ASTStatementNode *statement = parse();
+    if(statement != nullptr) statements->push_back(statement);
+    else{
+        cout << "Error occurred when parsing statement in block" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_CLOSE_SCOPE){
+        moveToNext();
+        return new ASTBlockStatement(statements);
+    }else return parseBlockStatement(statements);
+
+}
+
+ASTBlockStatement *Parser::parseBlockStatement(vector<ASTStatementNode *> *statements) {
+    moveToNext();
+    ASTStatementNode *statement = parse();
+    if (statement != nullptr) statements->push_back(statement);
+    else {
+        cout << "Error occurred when parsing statement in block" << endl;
+        return nullptr;
+    }
+    if (currentToken.getType() == TOK_CLOSE_SCOPE) {
+        moveToNext();
+        return new ASTBlockStatement(statements);
+    }else return parseBlockStatement(statements);
 }
 
 ASTForStatement *Parser::parseForStatement() {
-    return nullptr;
+    moveToNext();
+    if(currentToken.getType() == TOK_OPEN_PARENTHESES) moveToNext();
+    else{
+        cout << "Error occurred when parsing for statement: '(' expected after for" << endl;
+        return nullptr;
+    }
+    ASTVariableDeclStatement *variableDeclStatement = parseVariableDeclStatement();
+    if(variableDeclStatement == nullptr){
+        cout << "Error occurred when parsing for statement: Variable Declaration statement expected after '('" << endl;
+        return nullptr;
+    }
+    ASTExpressionNode *expressionNode = parseExpression();
+    if(expressionNode == nullptr){
+        cout << "Error occurred when parsing for statement: Expression expected after Variable Declaration" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_SEMICOLON) moveToNext();
+    else{
+        cout << "Error occurred when parsing for statement: Missing semicolon after expression" << endl;
+        return nullptr;
+    }
+    ASTAssignmentStatement *assignmentStatement = parseAssignmentStatement();
+    if(assignmentStatement == nullptr){
+        cout << "Error occurred when parsing for statement: Assignment statement expected after Expression" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_CLOSE_PARENTHESES) moveToNext();
+    ASTBlockStatement *forBlock = parseBlockStatement();
+    if(forBlock != nullptr) return new ASTForStatement(variableDeclStatement, expressionNode, assignmentStatement, forBlock);
+    else{
+        cout << "Error occurred when parsing for statement: Block expected after conditions" << endl;
+        return nullptr;
+    }
 }
 
 ASTFunctionDeclStatement *Parser::parseFunctionDeclStatement() {
-    return nullptr;
+    if(currentToken.getType() == TOK_FUNC_DECL) moveToNext();
+    else{
+        cout << "Error occurred when parsing function declaration statement: unexpected token" << endl;
+        return nullptr;
+    }
+    ASTIdentifierNode *identifierNode = parseIdentifierNode();
+    if(identifierNode == nullptr){
+        cout << "Error occurred when parsing function declaration statement: expected identifier after 'fn'" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_OPEN_PARENTHESES) moveToNext();
+    else{
+        cout << "Error occurred when parsing function declaration statement: expected '(' after identifier" << endl;
+        return nullptr;
+    }
+    ASTFormalParams *formalParams = parseFormalParams();
+    if(formalParams != nullptr){
+        if(currentToken.getType() == TOK_COLON) moveToNext();
+        else{
+            cout << "Error occurred when parsing function declaration statement: expected ':' after formal params" << endl;
+            return nullptr;
+        }
+    }else{
+        cout << "Error occurred when parsing function declaration statement: expected formal params after identifier" << endl;
+        return nullptr;
+    }
+    ASTType *type = parseType();
+    if(type == nullptr) {
+        cout << "Error occurred when parsing function declaration statement: expected type after formal params" << endl;
+        return nullptr;
+    }
+    ASTBlockStatement *funcBody = parseBlockStatement();
+    if(funcBody != nullptr) return new ASTFunctionDeclStatement(identifierNode, formalParams, type, funcBody);
+    else{
+        cout << "Error occurred when parsing function declaration statement: error occurred when parsing function body" << endl;
+        return nullptr;
+    }
 }
 
 ASTIfStatement *Parser::parseIfStatement() {
-    return nullptr;
+    if(currentToken.getType() == TOK_IF) moveToNext();
+    else{
+        cout << "Error occurred when parsing if statement: unexpected token" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_OPEN_PARENTHESES) moveToNext();
+    else{
+        cout << "Error occurred when parsing if statement: expected '(' after if" << endl;
+        return nullptr;
+    }
+    ASTExpressionNode *ifCondition = parseExpression();
+    if(ifCondition == nullptr){
+        cout << "Error occurred when parsing if statement: expected condition expression after if" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_CLOSE_PARENTHESES) moveToNext();
+    else{
+        cout << "Error occurred when parsing if statement: expected ')' after if condition" << endl;
+        return nullptr;
+    }
+    ASTBlockStatement *ifBlock = parseBlockStatement();
+    if(ifBlock == nullptr){
+        cout << "Error occurred when parsing if statement: invalid if block" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_ELSE) moveToNext();
+    else{
+        ASTBlockStatement *elseBlock = new ASTBlockStatement(new vector<ASTStatementNode*>);//if no else detected, create if node with if block and empty else block
+        return new ASTIfStatement(ifCondition, ifBlock, elseBlock);
+    }
+    ASTBlockStatement *elseBlock = parseBlockStatement();
+    if(elseBlock == nullptr){
+        cout << "Error occurred when parsing if statement: invalid else block" << endl;
+        return nullptr;
+    }else return new ASTIfStatement(ifCondition, ifBlock, elseBlock);// if else is detected, create if node with if block and else block
 }
 
 ASTPrintStatement *Parser::parsePrintStatement() {
-    return nullptr;
+    if(currentToken.getType() == TOK_PRINT) moveToNext();
+    else{
+        cout << "Error occurred when parsing print statement: unexpected token encountered" << endl;
+        return nullptr;
+    }
+    ASTExpressionNode *expressionNode = parseExpression();
+    if(expressionNode != nullptr) return new ASTPrintStatement(expressionNode);
+    else{
+        cout << "Error occurred when parsing print statement: invalid expression" << endl;
+        return nullptr;
+    }
 }
 
 ASTReturnStatement *Parser::parseReturnStatement() {
-    return nullptr;
+    if(currentToken.getType() == TOK_RETURN) moveToNext();
+    else{
+        cout << "Error occurred when parsing return statement: unexpected token encountered" << endl;
+        return nullptr;
+    }
+    ASTExpressionNode *expressionNode = parseExpression();
+    if(expressionNode != nullptr) return new ASTReturnStatement(expressionNode);
+    else{
+        cout << "Error occurred when parsing return statement: invalid expression" << endl;
+        return nullptr;
+    }
 }
 
 ASTVariableDeclStatement *Parser::parseVariableDeclStatement() {
-    return nullptr;
+    if(currentToken.getType() == TOK_VAR_DECL) moveToNext();
+    else{
+        cout << "Error occurred when parsing variable declaration statement: unexpected token encountered" << endl;
+        return nullptr;
+    }
+    ASTIdentifierNode *identifierNode = parseIdentifierNode();
+    if(identifierNode == nullptr){
+        cout << "Error occurred when parsing variable declaration statement: invalid identifier" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_COLON) moveToNext();
+    else{
+        cout << "Error occurred when parsing variable declaration statement: expected ':' after identifier" << endl;
+        return nullptr;
+    }
+    ASTType *type = parseType();
+    if(type == nullptr){
+        cout << "Error occurred when parsing variable declaration statement: invalid type" << endl;
+        return nullptr;
+    }
+    if(currentToken.getType() == TOK_ASSIGNMENT_OP) moveToNext();
+    else{
+        cout << "Error occurred when parsing variable declaration statement: expected '=' after type" << endl;
+        return nullptr;
+    }
+    ASTExpressionNode *varValue = parseExpression();
+    if(varValue != nullptr) return new ASTVariableDeclStatement(identifierNode, type, varValue);
+    else{
+        cout << "Error occurred when parsing variable declaration statement: invalid expression" << endl;
+        return nullptr;
+    }
 }
 
 void Parser::moveToNext() {

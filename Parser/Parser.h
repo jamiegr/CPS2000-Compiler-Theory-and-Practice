@@ -14,8 +14,8 @@
 #include "AST/Expressions/Factors/ASTInt.h"
 #include "AST/Expressions/Factors/ASTSubExpression.h"
 #include "AST/Expressions/Factors/ASTUnaryNode.h"
-#include "AST/Expressions/ASTFormalParam.h"
-#include "AST/Expressions/ASTFormalParams.h"
+#include "AST/Other/ASTFormalParam.h"
+#include "AST/Other/ASTFormalParams.h"
 #include "AST/Statements/ASTAssignmentStatement.h"
 #include "AST/Statements/ASTBlockStatement.h"
 #include "AST/Statements/ASTForStatement.h"
@@ -36,7 +36,7 @@ private:
 
     void moveToNext();
 
-    ASTNode *parse();
+    ASTStatementNode *parse();
 
     ASTBool *parseBool();
 
@@ -59,20 +59,23 @@ private:
     ASTActualParams *parseActualParams(vector<ASTExpressionNode*> *actualParams);
 
     ASTAddOp *parseAddOp();
-
+    //The below 3 methods all return a node of type ASTExpressionNode i.e. the superclass for all expressions since an Expression can be as simple as a single factor
     ASTExpressionNode *parseExpression();
+
+    ASTExpressionNode *parseSimpleExpression();
+
+    ASTExpressionNode *parseTerm();
+    //
 
     ASTFormalParam *parseFormalParam();
 
     ASTFormalParams *parseFormalParams();
 
+    ASTFormalParams *parseFormalParams(vector<ASTFormalParam*> *formalParams);
+
     ASTMultOp *parseMultOp();
 
     ASTRelOp *parseRelOp();
-
-    ASTSimpleExpression *parseSimpleExpression();
-
-    ASTTerm *parseTerm();
 
     ASTType *parseType();
 
@@ -81,6 +84,8 @@ private:
     ASTAssignmentStatement *parseAssignmentStatement();
 
     ASTBlockStatement *parseBlockStatement();
+
+    ASTBlockStatement *parseBlockStatement(vector<ASTStatementNode*>*statements);
 
     ASTForStatement *parseForStatement();
 

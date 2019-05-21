@@ -10,15 +10,16 @@
 #include "../Expressions/ASTExpression.h"
 #include "ASTVariableDeclStatement.h"
 #include "ASTAssignmentStatement.h"
+#include "ASTBlockStatement.h"
 
 class ASTForStatement : public ASTStatementNode {
 public:
     ASTVariableDeclStatement *variableDeclStatement;
     ASTExpressionNode *expression;
     ASTAssignmentStatement *assignmentStatement;
-
+    ASTBlockStatement *forBlock;
     ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpressionNode *expression,
-                    ASTAssignmentStatement *assignmentStatement);
+                    ASTAssignmentStatement *assignmentStatement, ASTBlockStatement *forBlock);
 
     ~ASTForStatement();
 

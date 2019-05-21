@@ -8,7 +8,7 @@
 
 #include "../ASTFactorNode.h"
 #include "ASTIdentifierNode.h"
-#include "../ASTActualParams.h"
+#include "../../Other/ASTActualParams.h"
 
 class ASTFunctionCall : public ASTFactorNode {
 public:

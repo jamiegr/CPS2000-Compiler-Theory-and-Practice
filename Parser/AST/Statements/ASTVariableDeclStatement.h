@@ -6,7 +6,7 @@
 #define COMPILERASSIGNMENT_ASTVARIABLEDECLSTATEMENT_H
 
 
-#include "../Expressions/ASTType.h"
+#include "../Other/ASTType.h"
 #include "../Expressions/ASTExpression.h"
 #include "../ASTStatementNode.h"
 #include "../Expressions/Factors/ASTIdentifierNode.h"

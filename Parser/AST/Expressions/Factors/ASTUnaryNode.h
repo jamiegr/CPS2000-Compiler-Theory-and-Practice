@@ -8,7 +8,7 @@
 
 #include "../ASTExpression.h"
 #include "../ASTFactorNode.h"
-#include "../ASTUnaryOp.h"
+#include "../../Other/ASTUnaryOp.h"
 
 class ASTUnaryNode : public ASTFactorNode {
 public:

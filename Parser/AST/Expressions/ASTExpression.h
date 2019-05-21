@@ -6,16 +6,16 @@
 #define COMPILERASSIGNMENT_ASTEXPRESSION_H
 
 
-#include "ASTRelOp.h"
+#include "../Other/ASTRelOp.h"
 #include "ASTSimpleExpression.h"
 
 class ASTExpression : public ASTExpressionNode {
 public:
-    ASTSimpleExpression *simpleExpression1;
+    ASTExpressionNode *simpleExpression1;
     ASTRelOp *relOp;
-    ASTSimpleExpression *simpleExpression2;
+    ASTExpressionNode *simpleExpression2;
 
-    ASTExpression(ASTSimpleExpression *simpleExpression1, ASTRelOp *relOp, ASTSimpleExpression *simpleExpression2);
+    ASTExpression(ASTExpressionNode *simpleExpression1, ASTRelOp *relOp, ASTExpressionNode *simpleExpression2);
 
     ~ASTExpression();
 

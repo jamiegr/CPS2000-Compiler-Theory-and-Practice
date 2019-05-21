@@ -7,15 +7,15 @@
 
 
 #include "ASTTerm.h"
-#include "ASTAddOp.h"
+#include "../Other/ASTAddOp.h"
 
 class ASTSimpleExpression : public ASTExpressionNode {
 public:
-    ASTTerm *term1;
+    ASTExpressionNode *term1;
     ASTAddOp *addOp;
-    ASTTerm *term2;
+    ASTExpressionNode *term2;
 
-    ASTSimpleExpression(ASTTerm *term1, ASTAddOp *addOp, ASTTerm *term2);
+    ASTSimpleExpression(ASTExpressionNode *term1, ASTAddOp *addOp, ASTExpressionNode *term2);
 
     ~ASTSimpleExpression();
 
