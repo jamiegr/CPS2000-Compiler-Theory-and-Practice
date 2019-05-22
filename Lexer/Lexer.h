@@ -109,7 +109,7 @@ private:
 
     void clearStack();
 
-    string nextChar();
+    char nextChar();
 
     TOK_TYPE classifyIdentifier(string identifier);//takes a string classified as an identifier and checks if it matches any keywords such as for, if, print, return, var etc... and returns the corresponding token type
 

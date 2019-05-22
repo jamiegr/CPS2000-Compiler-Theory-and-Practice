@@ -16,7 +16,7 @@ Lexer::Lexer(string file_address) {//lexer constructor, checks if given file add
     filestream.open(file_address);
     if(filestream.is_open()){//only executes if valid readable file address is given
         while(getline(filestream, currentLine)){//adding program from file to program string line by line
-            program.append(currentLine);
+            program.append(currentLine + '\n');
             total_lines++;
         }
     }else{
@@ -40,18 +40,18 @@ Token Lexer::getNextToken() {
     visited_final_states.push(BAD);
 
     while(current_state != ERROR && char_cursor < program.length()){
-        string next = nextChar();//load next character in the form of a string so it can be appended
-        current_lexeme.append(next);//using string(1, c) constructor to convert current character to a string and append it to the current lexeme
-
+        char next = nextChar();//load next character
+        current_lexeme.append(string(1, next));//using string(1, c) constructor to convert current character to a string and append it to the current lexeme
         if(final_states.find(current_state) != final_states.end()) clearStack();//if current state is a final state clear stack
         visited_final_states.push(current_state);//push current state to stack
-        current_state = getNextState(next.at(0));//get next state
+        current_state = getNextState(next);//get next state
     }
 
     while(final_states.find(current_state) == final_states.end() && current_state != BAD){
         current_state = visited_final_states.top();//getting top state from stack
         visited_final_states.pop();//popping top state from stack
         if(!current_lexeme.empty()){
+            if(current_lexeme.at(current_lexeme.length()-1) == '\n') line_cursor--;
             current_lexeme.pop_back();//truncating lexeme
             char_cursor--;//moving char pointer back to before truncated character
         }
@@ -69,8 +69,8 @@ Token Lexer::getNextToken() {
     return Token(TOK_SYNTAX_ERR, "ERROR");//if no valid token found return syntax error
 }
 
-string Lexer::nextChar() {
-    string character = string(1, program.at(char_cursor));
+char Lexer::nextChar() {
+    char character = program.at(char_cursor);
     if(program.at(char_cursor) == '\n') line_cursor++;
     char_cursor++;
     return character;

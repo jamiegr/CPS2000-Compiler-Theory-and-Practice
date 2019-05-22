@@ -15,7 +15,7 @@ fn AverageOfThree(x:float , y:float , z:float) : float {
 
 var x:float = 2.4;
 var y:float = Square(2.5);
-print y;                                //6.25
-print XGreaterThanY(x, 2.3);            //true
+print y;                                /*6.25 */
+print XGreaterThanY(x, 2.3);            /*true */
 print XGreaterThanY(Square(1.5), y);    //false
 print AverageOfThree(x, y, 1.2);        //3.28
