@@ -5,17 +5,17 @@
 #ifndef COMPILERASSIGNMENT_ASTEXPRESSION_H
 #define COMPILERASSIGNMENT_ASTEXPRESSION_H
 
-
-#include "../Other/ASTRelOp.h"
-#include "ASTSimpleExpression.h"
+#include <vector>
+#include "ASTFactorNode.h"
+#include "../ASTOp.h"
 
 class ASTExpression : public ASTExpressionNode {
 public:
-    ASTExpressionNode *simpleExpression1;
-    ASTRelOp *relOp;
-    ASTExpressionNode *simpleExpression2;
+    ASTFactorNode *factor1;
+    std::vector<ASTOp*> *ops;
+    std::vector<ASTFactorNode*> *factors;
 
-    ASTExpression(ASTExpressionNode *simpleExpression1, ASTRelOp *relOp, ASTExpressionNode *simpleExpression2);
+    ASTExpression(ASTFactorNode *factor1, std::vector<ASTOp*> *relOps, std::vector<ASTFactorNode*> *factors);
 
     ~ASTExpression();
 

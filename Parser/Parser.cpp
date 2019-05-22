@@ -6,20 +6,20 @@
 
 using namespace std;
 
-Parser::Parser(Lexer lexer) {
+Parser::Parser(Lexer *lexer) {
     this->lexer = lexer;
 }
 
 vector<ASTNode *> *Parser::buildAST() {
     vector<ASTNode*> *AST = new vector<ASTNode*>;
-    nextToken = lexer.getNextToken();
+    nextToken = lexer->getNextToken();
     moveToNext();
     ASTNode *currentNode;
     while(currentToken.getType() != TOK_EOF){
+        cout << "Parsing node: " << currentToken.getValue() << endl;
         currentNode = parse();
         if(currentNode != nullptr){
             AST->push_back(currentNode);
-            cout << "Successfully parsed statement" << endl;
         }else{
             cout << "Parsing error occured, parser terminating." << endl;
             return nullptr;
@@ -97,21 +97,25 @@ ASTFloat *Parser::parseFloat() {
 
 ASTFunctionCall *Parser::parseFunctionCall() {
     ASTIdentifierNode *identifierNode = parseIdentifierNode();
-    moveToNext();
     if(currentToken.getType() == TOK_OPEN_PARENTHESES){
-        moveToNext();
-        ASTActualParams *actualParams = parseActualParams();
-        if(nextToken.getType() == TOK_CLOSE_PARENTHESES){
-            if(identifierNode != nullptr && actualParams != nullptr){
-                moveToNext();
-                return new ASTFunctionCall(identifierNode, actualParams);
-            }else{
-                cout << "Error parsing function call node" << endl;
+        if(nextToken.getType() != TOK_CLOSE_PARENTHESES) {
+            moveToNext();
+            ASTActualParams *actualParams = parseActualParams();
+            if (currentToken.getType() == TOK_CLOSE_PARENTHESES) {
+                if (identifierNode != nullptr && actualParams != nullptr) {
+                    moveToNext();
+                    return new ASTFunctionCall(identifierNode, actualParams);
+                } else {
+                    cout << "Error parsing function call node" << endl;
+                    return nullptr;
+                }
+            } else {
+                cout << "')' expected after parameters in function call" << endl;
                 return nullptr;
             }
         }else{
-            cout << "')' expected after parameters in function call" << endl;
-            return nullptr;
+            ASTActualParams *actualParams = new ASTActualParams(new vector<ASTExpressionNode*>);
+            return new ASTFunctionCall(identifierNode, actualParams);//if brackets are empty return function call with empty actual params
         }
     }else{
         cout << "'(' expected after identifier in function call" << endl;
@@ -193,7 +197,6 @@ ASTActualParams *Parser::parseActualParams() {
             return parseActualParams(actualParams);
         }
     }else if(currentToken.getType() == TOK_CLOSE_PARENTHESES){
-        moveToNext();
         return new ASTActualParams(actualParams);
     }else{
         cout << "Parsing error occurred when parsing actual parameters node" << endl;
@@ -217,7 +220,6 @@ ASTActualParams *Parser::parseActualParams(vector<ASTExpressionNode *> *actualPa
             return parseActualParams(actualParams);
         }
     }else if(currentToken.getType() == TOK_CLOSE_PARENTHESES){
-        moveToNext();
         return new ASTActualParams(actualParams);
     }else{
         cout << "Parsing error occurred when parsing actual parameters node" << endl;
@@ -247,42 +249,42 @@ ASTAddOp *Parser::parseAddOp() {
 }
 
 ASTExpressionNode *Parser::parseExpression() {
-    ASTExpressionNode *simpleExpression = parseSimpleExpression();
-    if(currentToken.getType() == TOK_REL_OP){
-        ASTRelOp *relOp = parseRelOp();
-        ASTExpressionNode *simpleExpression2 = parseSimpleExpression();
-        if(simpleExpression != nullptr && relOp != nullptr && simpleExpression2 != nullptr) return new ASTExpression(simpleExpression, relOp, simpleExpression2);
-        else{
-            cout << "Parsing error occurred when parsing expression" << endl;
-            return nullptr;
-        }
-    }else return simpleExpression;
+    ASTFactorNode *factor1 = parseFactor();
+    ASTOp *op;
+    if(currentToken.getType() == TOK_REL_OP) op = parseRelOp();
+    else if(currentToken.getType() == TOK_ADD_OP) op = parseAddOp();
+    else if(currentToken.getType() == TOK_MULT_OP) op = parseMultOp();
+    else return factor1;
+    vector<ASTOp*> *operators = new vector<ASTOp*>;
+    vector<ASTFactorNode*> *factors = new vector<ASTFactorNode*>;
+    ASTFactorNode *factor2 = parseFactor();
+    if(factor1 != nullptr && op != nullptr && factor2 != nullptr){
+        operators->push_back(op);
+        factors->push_back(factor2);
+        if(currentToken.getType() == TOK_REL_OP || currentToken.getType() == TOK_ADD_OP || currentToken.getType() == TOK_MULT_OP) return parseExpression(factor1, operators, factors);
+        else return new ASTExpression(factor1, operators, factors);
+    }else{
+        cout << "Parsing error occurred when parsing expression" << endl;
+        return nullptr;
+    }
 }
 
-ASTExpressionNode *Parser::parseSimpleExpression() {
-    ASTExpressionNode *term = parseTerm();
-    if(currentToken.getType() == TOK_ADD_OP){
-        ASTAddOp *addOp = parseAddOp();
-        ASTExpressionNode *term2 = parseTerm();
-        if(term != nullptr && addOp != nullptr && term2 != nullptr) return new ASTSimpleExpression(term, addOp, term2);
-        else{
-            cout << "Parsing error occurred when parsing expression" << endl;
-            return nullptr;
-        }
-    }else return term;
-}
-
-ASTExpressionNode *Parser::parseTerm() {
+ASTExpressionNode *Parser::parseExpression(ASTFactorNode *factor1, std::vector<ASTOp*> *ops, std::vector<ASTFactorNode*> *factors) {
+    ASTOp *op;
+    if(currentToken.getType() == TOK_REL_OP) op = parseRelOp();
+    else if(currentToken.getType() == TOK_ADD_OP) op = parseAddOp();
+    else if(currentToken.getType() == TOK_MULT_OP) op = parseMultOp();
+    else return new ASTExpression(factor1, ops, factors);
     ASTFactorNode *factorNode = parseFactor();
-    if(currentToken.getType() == TOK_ADD_OP){
-        ASTMultOp *multOp = parseMultOp();
-        ASTFactorNode *factorNode2 = parseFactor();
-        if(factorNode != nullptr && multOp != nullptr && factorNode2 != nullptr) return new ASTTerm(factorNode, multOp, factorNode2);
-        else{
-            cout << "Parsing error occurred when parsing expression" << endl;
-            return nullptr;
-        }
-    }else return factorNode;
+    if(op != nullptr && factorNode != nullptr){
+        ops->push_back(op);
+        factors->push_back(factorNode);
+        if(currentToken.getType() == TOK_REL_OP || currentToken.getType() == TOK_ADD_OP || currentToken.getType() == TOK_MULT_OP) return parseExpression(factor1, ops, factors);
+        else return new ASTExpression(factor1, ops, factors);
+    }else{
+        cout << "Parsing error occurred when parsing expression" << endl;
+        return nullptr;
+    }
 }
 
 ASTFormalParam *Parser::parseFormalParam() {
@@ -441,22 +443,24 @@ ASTUnaryOp *Parser::parseUnaryOp() {
 
 ASTAssignmentStatement *Parser::parseAssignmentStatement() {
     ASTIdentifierNode *identifierNode = parseIdentifierNode();
+    if(identifierNode == nullptr){
+        cout << "Error occurred when parsing assignment statement node: identifier expected" << endl;
+        return nullptr;
+    }
     if(currentToken.getType() == TOK_ASSIGNMENT_OP) moveToNext();
     else{
-        cout << "Error occurred when parsing assignment statement node: ':' expected after identifier" << endl;
+        cout << "Error occurred when parsing assignment statement node: '=' expected after identifier" << endl;
         return nullptr;
     }
     ASTExpressionNode *expressionNode = parseExpression();
-    if(identifierNode != nullptr && expressionNode != nullptr){
-        if(currentToken.getType() == TOK_SEMICOLON){
-            moveToNext();
-            return new ASTAssignmentStatement(identifierNode, expressionNode);
-        }else{
-            cout << "Error occurred when parsing assignment statement: missing semicolon" << endl;
-            return nullptr;
-        }
-    }else{
-        cout << "Error occurred when parsing assignment statement node" << endl;
+    if(currentToken.getType() == TOK_SEMICOLON) moveToNext();
+    else{
+        cout << "Error occurred when parsing assignment statement node: semicolon expected after expression" << endl;
+        return nullptr;
+    }
+    if(expressionNode != nullptr) return new ASTAssignmentStatement(identifierNode, expressionNode);
+    else{
+        cout << "Error occurred when parsing assignment statement: invalid expression" << endl;
         return nullptr;
     }
 }
@@ -482,7 +486,6 @@ ASTBlockStatement *Parser::parseBlockStatement() {
 }
 
 ASTBlockStatement *Parser::parseBlockStatement(vector<ASTStatementNode *> *statements) {
-    moveToNext();
     ASTStatementNode *statement = parse();
     if (statement != nullptr) statements->push_back(statement);
     else {
@@ -502,7 +505,11 @@ ASTForStatement *Parser::parseForStatement() {
         cout << "Error occurred when parsing for statement: '(' expected after for" << endl;
         return nullptr;
     }
-    ASTVariableDeclStatement *variableDeclStatement = parseVariableDeclStatement();
+    ASTVariableDeclStatement *variableDeclStatement;
+    if(currentToken.getType() == TOK_SEMICOLON){
+        variableDeclStatement = new ASTVariableDeclStatement(new ASTIdentifierNode(""), new ASTType(NOTYPE), new ASTInt(-1));//ASTType NOTYPE indicates no var decl statement in for statement
+        moveToNext();
+    }else variableDeclStatement = parseVariableDeclStatement();
     if(variableDeclStatement == nullptr){
         cout << "Error occurred when parsing for statement: Variable Declaration statement expected after '('" << endl;
         return nullptr;
@@ -517,12 +524,22 @@ ASTForStatement *Parser::parseForStatement() {
         cout << "Error occurred when parsing for statement: Missing semicolon after expression" << endl;
         return nullptr;
     }
-    ASTAssignmentStatement *assignmentStatement = parseAssignmentStatement();
+    ASTAssignmentStatement *assignmentStatement;
+    if(currentToken.getType() == TOK_CLOSE_PARENTHESES){
+        assignmentStatement = new ASTAssignmentStatement(new ASTIdentifierNode(""), new ASTInt(-1));
+        moveToNext();
+    }else{
+        assignmentStatement = parseAssignmentStatement();
+        if(currentToken.getType() == TOK_CLOSE_PARENTHESES) moveToNext();
+        else{
+            cout << "Error occurred when parsing for statement: missing ')'" << endl;
+            return nullptr;
+        }
+    }
     if(assignmentStatement == nullptr){
         cout << "Error occurred when parsing for statement: Assignment statement expected after Expression" << endl;
         return nullptr;
     }
-    if(currentToken.getType() == TOK_CLOSE_PARENTHESES) moveToNext();
     ASTBlockStatement *forBlock = parseBlockStatement();
     if(forBlock != nullptr) return new ASTForStatement(variableDeclStatement, expressionNode, assignmentStatement, forBlock);
     else{
@@ -547,7 +564,9 @@ ASTFunctionDeclStatement *Parser::parseFunctionDeclStatement() {
         cout << "Error occurred when parsing function declaration statement: expected '(' after identifier" << endl;
         return nullptr;
     }
-    ASTFormalParams *formalParams = parseFormalParams();
+    ASTFormalParams *formalParams;
+    if(currentToken.getType() == TOK_CLOSE_PARENTHESES) formalParams = new ASTFormalParams(new vector<ASTFormalParam*>);
+    else formalParams = parseFormalParams();
     if(formalParams != nullptr){
         if(currentToken.getType() == TOK_COLON) moveToNext();
         else{
@@ -616,6 +635,11 @@ ASTPrintStatement *Parser::parsePrintStatement() {
         return nullptr;
     }
     ASTExpressionNode *expressionNode = parseExpression();
+    if(currentToken.getType() == TOK_SEMICOLON) moveToNext();
+    else{
+        cout << "Error occurred when parsing return statement: expected semicolon after expression" << endl;
+        return nullptr;
+    }
     if(expressionNode != nullptr) return new ASTPrintStatement(expressionNode);
     else{
         cout << "Error occurred when parsing print statement: invalid expression" << endl;
@@ -630,6 +654,11 @@ ASTReturnStatement *Parser::parseReturnStatement() {
         return nullptr;
     }
     ASTExpressionNode *expressionNode = parseExpression();
+    if(currentToken.getType() == TOK_SEMICOLON) moveToNext();
+    else{
+        cout << "Error occurred when parsing return statement: expected semicolon after expression" << endl;
+        return nullptr;
+    }
     if(expressionNode != nullptr) return new ASTReturnStatement(expressionNode);
     else{
         cout << "Error occurred when parsing return statement: invalid expression" << endl;
@@ -664,6 +693,11 @@ ASTVariableDeclStatement *Parser::parseVariableDeclStatement() {
         return nullptr;
     }
     ASTExpressionNode *varValue = parseExpression();
+    if(currentToken.getType() == TOK_SEMICOLON) moveToNext();
+    else{
+        cout << "Error occurred when parsing variable declaration statement: expected semicolon after expression" << endl;
+        return nullptr;
+    }
     if(varValue != nullptr) return new ASTVariableDeclStatement(identifierNode, type, varValue);
     else{
         cout << "Error occurred when parsing variable declaration statement: invalid expression" << endl;
@@ -673,5 +707,5 @@ ASTVariableDeclStatement *Parser::parseVariableDeclStatement() {
 
 void Parser::moveToNext() {
     currentToken = nextToken;
-    nextToken = lexer.getNextToken();
+    nextToken = lexer->getNextToken();
 }

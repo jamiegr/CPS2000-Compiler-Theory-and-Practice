@@ -23,15 +23,20 @@
 #include "AST/Statements/ASTIfStatement.h"
 #include "AST/Statements/ASTReturnStatement.h"
 #include "AST/Statements/ASTPrintStatement.h"
+#include "AST/Operators/ASTAddOp.h"
+#include "AST/Operators/ASTMultOp.h"
+#include "AST/Operators/ASTRelOp.h"
+
+using namespace std;
 
 class Parser {
 public:
-    explicit Parser(Lexer lexer);
+    explicit Parser(Lexer *lexer);
 
     vector<ASTNode *> *buildAST();
 
 private:
-    Lexer lexer;
+    Lexer *lexer;
     Token currentToken, nextToken;
 
     void moveToNext();
@@ -59,13 +64,10 @@ private:
     ASTActualParams *parseActualParams(vector<ASTExpressionNode*> *actualParams);
 
     ASTAddOp *parseAddOp();
-    //The below 3 methods all return a node of type ASTExpressionNode i.e. the superclass for all expressions since an Expression can be as simple as a single factor
+
     ASTExpressionNode *parseExpression();
 
-    ASTExpressionNode *parseSimpleExpression();
-
-    ASTExpressionNode *parseTerm();
-    //
+    ASTExpressionNode *parseExpression(ASTFactorNode *factor1, std::vector<ASTOp*> *relOps, std::vector<ASTFactorNode*> *factors);
 
     ASTFormalParam *parseFormalParam();
 

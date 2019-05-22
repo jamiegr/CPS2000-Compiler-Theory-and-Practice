@@ -6,6 +6,7 @@
 #define COMPILERASSIGNMENT_ASTRELOP_H
 
 #include "../ASTExpressionNode.h"
+#include "../ASTOp.h"
 
 enum REL_OP {
     LESS_THAN = 1,
@@ -16,7 +17,7 @@ enum REL_OP {
     GREATER_THAN_OR_EQUAL_TO = 6
 };
 
-class ASTRelOp : public ASTNode {
+class ASTRelOp : public ASTOp {
 public:
     REL_OP value;
 

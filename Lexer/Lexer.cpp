@@ -16,7 +16,7 @@ Lexer::Lexer(string file_address) {//lexer constructor, checks if given file add
     filestream.open(file_address);
     if(filestream.is_open()){//only executes if valid readable file address is given
         while(getline(filestream, currentLine)){//adding program from file to program string line by line
-            program.append(currentLine + "\n");
+            program.append(currentLine);
             total_lines++;
         }
     }else{
@@ -62,7 +62,7 @@ Token Lexer::getNextToken() {
 
     if(token != final_states.end()){//if state is final state
         TOK_TYPE returntype = token->second;
-        if(returntype == TOK_LINE_COMMENT || returntype == TOK_BLOCK_COMMENT) return getNextToken();//ignoring comments
+        if(returntype == TOK_LINE_COMMENT || returntype == TOK_BLOCK_COMMENT) return getNextToken();
         else if(returntype == TOK_IDENTIFIER) returntype = classifyIdentifier(current_lexeme);
         return Token(returntype, current_lexeme);// return token type + value pair
     }

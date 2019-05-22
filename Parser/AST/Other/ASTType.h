@@ -9,7 +9,7 @@
 #include "../ASTExpressionNode.h"
 
 enum TYPE {
-    FLOAT = 1, INT = 2, BOOL = 3
+    FLOAT = 1, INT = 2, BOOL = 3, NOTYPE = 4
 };
 
 class ASTType : public ASTNode {

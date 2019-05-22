@@ -14,7 +14,7 @@
 #include "../Parser/AST/Other/ASTActualParams.h"
 #include "../Parser/AST/Other/ASTFormalParam.h"
 #include "../Parser/AST/Other/ASTFormalParams.h"
-#include "../Parser/AST/Other/ASTUnaryOp.h"
+#include "../Parser/AST/Operators/ASTUnaryOp.h"
 #include "../Parser/AST/Statements/ASTAssignmentStatement.h"
 #include "../Parser/AST/Statements/ASTBlockStatement.h"
 #include "../Parser/AST/Statements/ASTForStatement.h"
@@ -23,6 +23,9 @@
 #include "../Parser/AST/Statements/ASTReturnStatement.h"
 #include "../Parser/AST/Expressions/Factors/ASTFunctionCall.h"
 #include "../Parser/AST/Statements/ASTFunctionDeclStatement.h"
+#include "../Parser/AST/Operators/ASTAddOp.h"
+#include "../Parser/AST/Operators/ASTMultOp.h"
+#include "../Parser/AST/Operators/ASTRelOp.h"
 
 class Visitor {
 public:
@@ -53,10 +56,6 @@ public:
     virtual void visit(ASTMultOp *node) = 0;
 
     virtual void visit(ASTRelOp *node) = 0;
-
-    virtual void visit(ASTSimpleExpression *node) = 0;
-
-    virtual void visit(ASTTerm *node) = 0;
 
     virtual void visit(ASTType *node) = 0;
 
