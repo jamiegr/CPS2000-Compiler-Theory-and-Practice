@@ -5,7 +5,7 @@
 #include "ASTExpression.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTExpression::ASTExpression(ASTFactorNode *factor1, std::vector<ASTOp*> *relOps, std::vector<ASTFactorNode*> *factors) {
+ASTExpression::ASTExpression(ASTFactorNode *factor1, std::vector<ASTOp*> *ops, std::vector<ASTFactorNode*> *factors) {
     this->factor1 = factor1;
     this->ops = ops;
     this->factors = factors;
