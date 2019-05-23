@@ -5,7 +5,7 @@
 #include "ASTAddOp.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTAddOp::ASTAddOp(ADD_OP value) {
+ASTAddOp::ASTAddOp(std::string value) {
     this->value = value;
 }
 

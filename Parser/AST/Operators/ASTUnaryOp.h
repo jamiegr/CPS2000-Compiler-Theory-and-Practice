@@ -8,15 +8,11 @@
 #include "../ASTExpressionNode.h"
 #include "../ASTOp.h"
 
-enum UNARY_OP {
-    NEGATIVE = 1, NOT = 2
-};
-
 class ASTUnaryOp : public ASTOp {
 public:
-    UNARY_OP value;
+    std::string value;
 
-    ASTUnaryOp(UNARY_OP value);
+    ASTUnaryOp(std::string value);
 
     void Accept(Visitor *visitor) override;
 };

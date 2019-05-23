@@ -5,7 +5,7 @@
 #include "ASTUnaryOp.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTUnaryOp::ASTUnaryOp(UNARY_OP value) {
+ASTUnaryOp::ASTUnaryOp(std::string value) {
     this->value = value;
 }
 

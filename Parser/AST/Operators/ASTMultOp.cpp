@@ -5,7 +5,7 @@
 #include "ASTMultOp.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTMultOp::ASTMultOp(MULT_OP value) {
+ASTMultOp::ASTMultOp(std::string value) {
     this->value = value;
 }
 

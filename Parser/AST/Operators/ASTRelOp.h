@@ -8,20 +8,11 @@
 #include "../ASTExpressionNode.h"
 #include "../ASTOp.h"
 
-enum REL_OP {
-    LESS_THAN = 1,
-    GREATER_THAN = 2,
-    EQUAL_TO = 3,
-    NOT_EQUAL_TO = 4,
-    LESS_THAN_OR_EQUAL_TO = 5,
-    GREATER_THAN_OR_EQUAL_TO = 6
-};
-
 class ASTRelOp : public ASTOp {
 public:
-    REL_OP value;
+    std::string value;
 
-    ASTRelOp(REL_OP value);
+    ASTRelOp(std::string value);
 
     void Accept(Visitor *visitor) override;
 };

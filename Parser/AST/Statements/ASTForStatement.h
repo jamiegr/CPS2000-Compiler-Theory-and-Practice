@@ -18,6 +18,7 @@ public:
     ASTExpressionNode *expression;
     ASTAssignmentStatement *assignmentStatement;
     ASTBlockStatement *forBlock;
+
     ASTForStatement(ASTVariableDeclStatement *variableDeclStatement, ASTExpressionNode *expression,
                     ASTAssignmentStatement *assignmentStatement, ASTBlockStatement *forBlock);
 

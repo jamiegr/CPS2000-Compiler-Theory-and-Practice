@@ -8,15 +8,11 @@
 #include "../ASTExpressionNode.h"
 #include "../ASTOp.h"
 
-enum ADD_OP {
-    PLUS = 1, MINUS = 2, OR = 3
-};
-
 class ASTAddOp : public ASTOp {
 public:
-    ADD_OP value;
+    std::string value;
 
-    ASTAddOp(ADD_OP value);
+    ASTAddOp(std::string value);
 
     void Accept(Visitor *visitor) override;
 };

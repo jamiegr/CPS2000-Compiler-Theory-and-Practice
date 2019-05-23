@@ -5,18 +5,14 @@
 #ifndef COMPILERASSIGNMENT_ASTTYPE_H
 #define COMPILERASSIGNMENT_ASTTYPE_H
 
-
+#include <string>
 #include "../ASTExpressionNode.h"
-
-enum TYPE {
-    FLOAT = 1, INT = 2, BOOL = 3, NOTYPE = 4
-};
 
 class ASTType : public ASTNode {
 public:
-    TYPE value;
+    std::string value;
 
-    ASTType(TYPE value);
+    ASTType(std::string value);
 
     void Accept(Visitor *visitor) override;
 };

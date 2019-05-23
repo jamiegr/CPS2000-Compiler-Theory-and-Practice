@@ -61,19 +61,21 @@ private:
 
     ASTActualParams *parseActualParams();
 
-    ASTActualParams *parseActualParams(vector<ASTExpressionNode*> *actualParams);
+    ASTActualParams *parseActualParams(vector<ASTExpressionNode *> *actualParams);
 
     ASTAddOp *parseAddOp();
 
     ASTExpressionNode *parseExpression();
 
-    ASTExpressionNode *parseExpression(ASTFactorNode *factor1, std::vector<ASTOp*> *relOps, std::vector<ASTFactorNode*> *factors);
+    ASTExpressionNode *parseSimpleExpression();
+
+    ASTExpressionNode *parseTerm();
 
     ASTFormalParam *parseFormalParam();
 
     ASTFormalParams *parseFormalParams();
 
-    ASTFormalParams *parseFormalParams(vector<ASTFormalParam*> *formalParams);
+    ASTFormalParams *parseFormalParams(vector<ASTFormalParam *> *formalParams);
 
     ASTMultOp *parseMultOp();
 
@@ -87,7 +89,7 @@ private:
 
     ASTBlockStatement *parseBlockStatement();
 
-    ASTBlockStatement *parseBlockStatement(vector<ASTStatementNode*>*statements);
+    ASTBlockStatement *parseBlockStatement(vector<ASTStatementNode *> *statements);
 
     ASTForStatement *parseForStatement();
 

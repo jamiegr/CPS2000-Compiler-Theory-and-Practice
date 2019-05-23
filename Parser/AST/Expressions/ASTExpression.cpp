@@ -5,17 +5,18 @@
 #include "ASTExpression.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTExpression::ASTExpression(ASTFactorNode *factor1, std::vector<ASTOp*> *ops, std::vector<ASTFactorNode*> *factors) {
-    this->factor1 = factor1;
-    this->ops = ops;
-    this->factors = factors;
+ASTExpression::ASTExpression(ASTExpressionNode *simpleExpression1, ASTRelOp *relOp,
+                             ASTExpressionNode *simpleExpression2) {
+    this->simpleExpression1 = simpleExpression1;
+    this->relOp = relOp;
+    this->simpleExpression2 = simpleExpression2;
 }
 
 
 ASTExpression::~ASTExpression() {
-    delete factor1;
-    ops->clear();
-    factors->clear();
+    delete simpleExpression1;
+    delete relOp;
+    delete simpleExpression2;
 }
 
 void ASTExpression::Accept(Visitor *visitor) {

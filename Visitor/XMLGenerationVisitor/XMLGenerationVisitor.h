@@ -35,6 +35,10 @@ public:
 
     void visit(ASTExpression *node) override;
 
+    void visit(ASTSimpleExpression *node) override;
+
+    void visit(ASTTerm *node) override;
+
     void visit(ASTFormalParam *node) override;
 
     void visit(ASTFormalParams *node) override;

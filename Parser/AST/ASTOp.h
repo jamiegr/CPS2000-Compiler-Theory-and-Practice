@@ -5,6 +5,7 @@
 #ifndef COMPILERASSIGNMENT_ASTOP_H
 #define COMPILERASSIGNMENT_ASTOP_H
 
+#include <string>
 #include "ASTNode.h"
 
 class ASTOp : public ASTNode {

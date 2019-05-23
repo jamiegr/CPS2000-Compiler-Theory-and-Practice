@@ -5,7 +5,7 @@
 #include "ASTType.h"
 #include "../../../Visitor/Visitor.h"
 
-ASTType::ASTType(TYPE value) {
+ASTType::ASTType(std::string value) {
     this->value = value;
 }
 

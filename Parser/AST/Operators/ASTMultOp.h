@@ -8,15 +8,11 @@
 #include "../ASTExpressionNode.h"
 #include "../ASTOp.h"
 
-enum MULT_OP {
-    MULTIPLICATION = 1, DIVISION = 2, AND = 3
-};
-
 class ASTMultOp : public ASTOp {
 public:
-    MULT_OP value;
+    std::string value;
 
-    ASTMultOp(MULT_OP value);
+    ASTMultOp(std::string value);
 
     void Accept(Visitor *visitor) override;
 };
