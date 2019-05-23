@@ -261,7 +261,8 @@ ASTExpressionNode *Parser::parseExpression() {
     if(factor1 != nullptr && op != nullptr && factor2 != nullptr){
         operators->push_back(op);
         factors->push_back(factor2);
-        if(currentToken.getType() == TOK_REL_OP || currentToken.getType() == TOK_ADD_OP || currentToken.getType() == TOK_MULT_OP) return parseExpression(factor1, operators, factors);
+        if(currentToken.getType() == TOK_REL_OP || currentToken.getType() == TOK_ADD_OP || currentToken.getType() == TOK_MULT_OP)
+            return parseExpression(factor1, operators, factors);
         else return new ASTExpression(factor1, operators, factors);
     }else{
         cout << "Parsing error occurred when parsing expression" << endl;
@@ -279,7 +280,8 @@ ASTExpressionNode *Parser::parseExpression(ASTFactorNode *factor1, std::vector<A
     if(op != nullptr && factorNode != nullptr){
         ops->push_back(op);
         factors->push_back(factorNode);
-        if(currentToken.getType() == TOK_REL_OP || currentToken.getType() == TOK_ADD_OP || currentToken.getType() == TOK_MULT_OP) return parseExpression(factor1, ops, factors);
+        if(currentToken.getType() == TOK_REL_OP || currentToken.getType() == TOK_ADD_OP || currentToken.getType() == TOK_MULT_OP)
+            return parseExpression(factor1, ops, factors);
         else return new ASTExpression(factor1, ops, factors);
     }else{
         cout << "Parsing error occurred when parsing expression" << endl;
