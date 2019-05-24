@@ -10,7 +10,7 @@ fn XGreaterThanY(x:float , y:float) : bool {
 
 fn AverageOfThree(x:float , y:float , z:float) : float {
     var total:float = x + y + z;
-    return total / 3 ;
+    return total / 3.0 ;
 }
 
 var x:float = 2.4;
